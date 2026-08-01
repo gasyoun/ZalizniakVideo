@@ -1,0 +1,10 @@
+# Local tooling / IDE (never publish)
+.claude/
+.mcp.json
+.repowise/
+.vscode/
+.idea/
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
