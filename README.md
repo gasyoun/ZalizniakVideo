@@ -1,28 +1,65 @@
-# ZaliznjakVideo
+# ZalizniakVideo
 
-_Created: 14-06-2026 · Last updated: 11-07-2026_
+_Created: 14-04-2026 · Last updated: 01-08-2026_
 
-A workspace intended to collect transcripts of the lecture videos of
-**Andrey Anatolyevich Zaliznjak** (А. А. Зализняк, 1935–2017) — Russian
-linguist, academician of the Russian Academy of Sciences, known for his work
-on Russian grammar, the Old Novgorod dialect and its birchbark letters,
-accentology, and for his widely-followed public lectures.
+Статический **только-видео** каталог публичных лекций академика
+**А. А. Зализняка** (1935–2017): индекс + отдельная HTML-страница на каждое
+YouTube-видео.
 
-## Current state
+## Прямые ссылки
 
-This repository is at the scaffolding stage. It currently contains only:
+| Что | URL |
+|---|---|
+| **Этот сайт (индекс)** | [https://gasyoun.github.io/ZalizniakVideo/](https://gasyoun.github.io/ZalizniakVideo/) |
+| **Страница одного видео** | `https://gasyoun.github.io/ZalizniakVideo/video/<youtube-id>/` |
+| **JSON API** | [data/catalog.json](https://gasyoun.github.io/ZalizniakVideo/data/catalog.json) |
+| **Корпусная галерея BookIndex** (указатель, KWIC, фильтры по главам книги) | [BookIndex `#v4/materials/video`](https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video) |
 
-- [`LICENSE`](https://github.com/gasyoun/ZaliznjakVideo/blob/main/LICENSE) — Apache License 2.0.
-- [`.github/dependabot.yml`](https://github.com/gasyoun/ZaliznjakVideo/blob/main/.github/dependabot.yml)
-  and [`.github/workflows/dependabot-auto-merge.yml`](https://github.com/gasyoun/ZaliznjakVideo/blob/main/.github/workflows/dependabot-auto-merge.yml)
-  — GitHub Actions dependency-update automation.
+## Что здесь есть / чего нет
 
-The intended scope is **192 lecture-video transcripts** (as recorded in the
-repository description). Those transcript files have **not yet been committed** —
-until they are, this README should not be read as a claim that they are present.
+**Есть**
 
-## License
+- `index.html` — список ~175 уникальных роликов (поиск, тема, сортировка)
+- `video/<id>/index.html` — страница ролика с embed (youtube-nocookie), метаданные, ссылки
+- `data/catalog.json` — машиночитаемый каталог
+- данные из [BookIndex](https://github.com/gasyoun/BookIndex) `video_catalog` + `video_pipeline.json`
 
-Released under the [Apache License 2.0](https://github.com/gasyoun/ZaliznjakVideo/blob/main/LICENSE).
+**Нет (намеренно)**
+
+- полных расшифровок (они в конвейере BookIndex / том II; 27/176 text-links на момент выгрузки)
+- книжного указателя, KWIC, симуляторов — это BookIndex
+- «записей глав» книги «Из жизни слов и языков» — это **другие** публичные выступления
+
+## Сборка
+
+Нужен соседний клон `../BookIndex` (или `BOOKINDEX_ROOT`).
+
+```bash
+python scripts/build_site.py
+```
+
+Переменные окружения:
+
+- `BOOKINDEX_ROOT` — путь к BookIndex
+- `SITE_BASE` — канонический origin (по умолчанию `https://gasyoun.github.io/ZalizniakVideo`)
+
+## Честные счётчики (сборка 01-08-2026)
+
+| Метрика | Значение |
+|---|---:|
+| Строк `video_catalog` (raw) | 191 |
+| Уникальных YouTube id (страниц) | 175 |
+| Видео в pipeline | 176 |
+| Коллизии «много заголовков → один id» | 3 |
+| Суммарная длительность (уникальные) | ~см. `data/stats.json` |
+
+Коллизии id (`Tz3T7IxsbLU`, `xIoXVxahvDY`, `cJp5ZrnGivw`) — дефект сопоставления в источнике; на странице ролика перечислены все «висящие» заголовки. Исправление — в BookIndex (волна V0).
+
+## Лицензия
+
+Код сайта — [Apache License 2.0](https://github.com/gasyoun/ZalizniakVideo/blob/main/LICENSE).
+Сами видео принадлежат правообладателям YouTube/архивов; здесь только индекс и ссылки.
+Разметка сущностей и выдержки из расшифровок наследуются из политики данных BookIndex
+([LICENSE-DATA.md](https://github.com/gasyoun/BookIndex/blob/main/LICENSE-DATA.md)).
 
 _Dr. Mārcis Gasūns_
