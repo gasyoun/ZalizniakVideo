@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gasyoun.github.io/ZalizniakVideo/sitemap.xml
