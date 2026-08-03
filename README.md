@@ -1,4 +1,4 @@
-# ZaliznjakVideo
+# ZalizniakVideo
 
 _Created: 14-04-2026 · Last updated: 03-08-2026_
 
@@ -11,10 +11,10 @@ _Created: 14-04-2026 · Last updated: 03-08-2026_
 
 | Что | URL |
 |---|---|
-| **Этот сайт (индекс)** | [https://gasyoun.github.io/ZaliznjakVideo/](https://gasyoun.github.io/ZaliznjakVideo/) |
-| **Каноническая карточка** | `https://gasyoun.github.io/ZaliznjakVideo/v/<NNN>/` |
-| **JSON API v1** | [data/catalog.json](https://gasyoun.github.io/ZaliznjakVideo/data/catalog.json) |
-| **JSON API v2** | [data/catalog.v2.json](https://gasyoun.github.io/ZaliznjakVideo/data/catalog.v2.json) |
+| **Этот сайт (индекс)** | [https://gasyoun.github.io/ZalizniakVideo/](https://gasyoun.github.io/ZalizniakVideo/) |
+| **Каноническая карточка** | `https://gasyoun.github.io/ZalizniakVideo/v/<NNN>/` |
+| **JSON API v1** | [data/catalog.json](https://gasyoun.github.io/ZalizniakVideo/data/catalog.json) |
+| **JSON API v2** | [data/catalog.v2.json](https://gasyoun.github.io/ZalizniakVideo/data/catalog.v2.json) |
 | **Корпусная галерея BookIndex** (указатель, KWIC, фильтры по главам книги) | [BookIndex `#v4/materials/video`](https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video) |
 
 ## Что здесь есть / чего нет
@@ -56,7 +56,7 @@ python scripts/build_site.py --catalog ../BookIndex/data/video_catalog_public.js
 
 Переменная окружения:
 
-- `SITE_BASE` — канонический origin (по умолчанию `https://gasyoun.github.io/ZaliznjakVideo`)
+- `SITE_BASE` — канонический origin (по умолчанию `https://gasyoun.github.io/ZalizniakVideo`)
 - `BOOKINDEX_VIDEO_CATALOG` — альтернативный путь к публичному экспорту BookIndex
 
 Тесты:
@@ -94,7 +94,7 @@ python -m http.server 8000
 
 ## Лицензия
 
-Код сайта — [Apache License 2.0](https://github.com/gasyoun/ZaliznjakVideo/blob/main/LICENSE).
+Код сайта — [Apache License 2.0](https://github.com/gasyoun/ZalizniakVideo/blob/main/LICENSE).
 Сами видео принадлежат правообладателям YouTube/архивов; здесь только индекс и ссылки.
 Разметка сущностей и выдержки из расшифровок наследуются из политики данных BookIndex
 ([LICENSE-DATA.md](https://github.com/gasyoun/BookIndex/blob/main/LICENSE-DATA.md)).

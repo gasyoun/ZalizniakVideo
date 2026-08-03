@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build the static ZaliznjakVideo scholarly gallery.
+"""Build the static ZalizniakVideo scholarly gallery.
 
 The preferred input is BookIndex ``data/video_catalog_public.json``.  Until
 that export is available, the checked-in v1 catalog is accepted as a migration
@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PUBLIC_CATALOG = ROOT.parent / "BookIndex" / "data" / "video_catalog_public.json"
 FALLBACK_CATALOG = ROOT / "data" / "catalog.json"
 SITE_BASE = os.environ.get(
-    "SITE_BASE", "https://gasyoun.github.io/ZaliznjakVideo"
+    "SITE_BASE", "https://gasyoun.github.io/ZalizniakVideo"
 ).rstrip("/")
 BOOKINDEX_VIDEO = "https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video"
 
@@ -462,7 +462,7 @@ def page_shell(*, title: str, description: str, canonical: str, body: str, og_ty
 def footer_html() -> str:
     return f'''<footer class="site-footer"><div class="wrap">
 <p>Научно-редакционный указатель публичных видеозаписей. Видео хранятся у их правообладателей. Каталог связывает записи, проверяемые метаданные и материалы <a href="{esc(BOOKINDEX_VIDEO)}">BookIndex</a>.</p>
-<p><a href="data/catalog.json">JSON v1</a> · <a href="data/catalog.v2.json">JSON v2</a> · <a href="https://github.com/gasyoun/ZaliznjakVideo">Исходный код</a></p>
+<p><a href="data/catalog.json">JSON v1</a> · <a href="data/catalog.v2.json">JSON v2</a> · <a href="https://github.com/gasyoun/ZalizniakVideo">Исходный код</a></p>
 </div></footer>'''
 
 
@@ -498,7 +498,7 @@ def render_index(records: list[dict]) -> str:
         '<div class="filter-actions"><button class="reset" id="reset" type="button">Сбросить</button></div>',
     ]
     body = f'''<header class="masthead"><div class="wrap">
-<div class="brand-row"><div class="brand">ZaliznjakVideo · Архив видеозаписей</div><div class="accession">Редакционный каталог</div></div>
+<div class="brand-row"><div class="brand">ZalizniakVideo · Архив видеозаписей</div><div class="accession">Редакционный каталог</div></div>
 <h1>А. А. Зализняк: видеозаписи и материалы</h1>
 <p class="lede">Публичный научно-редакционный архив для читателей, исследователей и студентов. Каждая запись имеет постоянный номер, библиографию и сведения о происхождении, когда они подтверждены источником.</p>
 <div class="archive-facts"><span><strong>{len(records)}</strong> записей</span><span>Постоянная нумерация</span><span>Локальные обложки</span></div>
@@ -532,7 +532,7 @@ def render_video(record: dict) -> str:
     embed_url = f"https://www.youtube-nocookie.com/embed/{rid}"
     date = record.get("date_recorded") or record.get("upload_date")
     description = visible(record.get("description") or f"Архивная карточка видеозаписи «{title}»: проверяемые метаданные, происхождение и связанные материалы.")
-    citation = f"{visible(title)}. Видеозапись. ZaliznjakVideo, № {accession}. {canonical}"
+    citation = f"{visible(title)}. Видеозапись. ZalizniakVideo, № {accession}. {canonical}"
     facts = [
         ("Номер", f"№ {accession}"),
         ("Тип", record.get("type")),
@@ -570,7 +570,7 @@ def render_video(record: dict) -> str:
         json_ld["uploadDate"] = record["upload_date"]
     body = f'''<header class="masthead"><div class="wrap">
 <p class="breadcrumbs"><a href="../../">Все записи</a> / № {accession}</p>
-<div class="brand">ZaliznjakVideo · Архивная карточка</div>
+<div class="brand">ZalizniakVideo · Архивная карточка</div>
 <h1>{esc(visible(title))}</h1>
 <div class="archive-facts"><span class="accession">№ {accession}</span>{f'<span>{esc(visible(date))}</span>' if date else '<span>Дата не установлена</span>'}<span>{esc(fmt_duration(record['duration']))}</span></div>
 </div></header>
@@ -640,7 +640,7 @@ def fetch_thumbnails(records: list[dict], thumb_root: Path) -> None:
         urls = [f"https://i.ytimg.com/vi/{record['id']}/hqdefault.jpg", f"https://i.ytimg.com/vi/{record['id']}/mqdefault.jpg"]
         for url in urls:
             try:
-                request = urllib.request.Request(url, headers={"User-Agent": "ZaliznjakVideo thumbnail cache/2"})
+                request = urllib.request.Request(url, headers={"User-Agent": "ZalizniakVideo thumbnail cache/2"})
                 with urllib.request.urlopen(request, timeout=20) as response:
                     data = response.read()
                 if len(data) > 1024 and data[:2] == b"\xff\xd8":
