@@ -38,12 +38,13 @@ _Created: 14-04-2026 · Last updated: 03-08-2026_
 ## Сборка
 
 Предпочтительный входной файл находится в соседнем репозитории BookIndex:
-`../BookIndex/data/video_catalog_public.json`. Его можно указать
+`../BookIndex/data/video_catalog_public.v2.json`. Генератор принимает публичные
+схемы v1 и v2; v2 добавляет проверяемые свидетельства по отдельным полям. Файл можно указать
 явно. Если файла ещё нет, генератор использует проверенный `data/catalog.json`
 как миграционный набор.
 
 ```bash
-python scripts/build_site.py --catalog ../BookIndex/data/video_catalog_public.json
+python scripts/build_site.py --catalog ../BookIndex/data/video_catalog_public.v2.json
 ```
 
 Обычная сборка работает без сети и завершается ошибкой, если хотя бы одной
@@ -51,8 +52,24 @@ python scripts/build_site.py --catalog ../BookIndex/data/video_catalog_public.js
 обновления кэша используется:
 
 ```bash
-python scripts/build_site.py --catalog ../BookIndex/data/video_catalog_public.json --fetch-thumbnails
+python scripts/build_site.py --catalog ../BookIndex/data/video_catalog_public.v2.json --fetch-thumbnails
 ```
+
+Для полного обновления из ветки `main` BookIndex используйте транзакционную
+команду синхронизации:
+
+```bash
+python scripts/sync_bookindex.py
+```
+
+Она вычисляет и сохраняет SHA-256 исходных байтов, требует точную схему
+`video_catalog_public/2`, собирает сайт во временной копии, скачивает только
+отсутствующие обложки и запускает модульные и выпускные проверки. Только после
+их успеха изменения переносятся в рабочую копию. При расхождении команда
+оставляет игнорируемый Git бинарный патч
+`.sync-artifacts/bookindex-video-v2.patch`; коммитов и pull request она не
+создаёт. Еженедельная и ручная GitHub Action при расхождении загружает этот
+патч на 14 дней и завершается ошибкой с инструкцией для ручной проверки.
 
 Переменная окружения:
 

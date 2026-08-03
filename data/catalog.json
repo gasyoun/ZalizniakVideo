@@ -3,10 +3,10 @@
   "site": "https://gasyoun.github.io/ZalizniakVideo",
   "built_at": "2026-08-03T00:00:00Z",
   "stats": {
-    "unique_videos": 175,
+    "unique_videos": 176,
     "raw_catalog_rows": 192,
-    "pipeline_videos": 175,
-    "total_hours": 212.82,
+    "pipeline_videos": 176,
+    "total_hours": 214.13,
     "collisions": 0
   },
   "collisions": [],
@@ -10542,6 +10542,38 @@
         },
         {
           "head": "берестяные грамоты",
+          "type": "subject_index"
+        }
+      ]
+    },
+    {
+      "id": "spqW9cz7Gk0",
+      "title": "А. А. Зализняк: История русского ударения. Семинар 28",
+      "url": "https://www.youtube.com/watch?v=spqW9cz7Gk0",
+      "path": "video/spqW9cz7Gk0/",
+      "date": "2019-10-26",
+      "duration": 4706,
+      "theme": "русистика",
+      "stage": null,
+      "collision": false,
+      "titles_all": [
+        "А. А. Зализняк: История русского ударения. Семинар 28"
+      ],
+      "related_entities": [
+        {
+          "head": "А. А. Зализняк",
+          "type": "names"
+        },
+        {
+          "head": "Зализняк А. А.",
+          "type": "names"
+        },
+        {
+          "head": "русский",
+          "type": "languages"
+        },
+        {
+          "head": "ударение",
           "type": "subject_index"
         }
       ]

@@ -1,11 +1,11 @@
 {
   "schema": "zalizniak-video-catalog/2",
   "site": "https://gasyoun.github.io/ZalizniakVideo",
-  "source_schema": "video_catalog_public/1",
+  "source_schema": "video_catalog_public/2",
   "built_at": "2026-08-03T00:00:00Z",
   "stats": {
-    "records": 175,
-    "total_hours": 212.82
+    "records": 176,
+    "total_hours": 214.13
   },
   "videos": [
     {
@@ -31,12 +31,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -263,12 +264,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -438,12 +440,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -623,12 +626,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -892,12 +896,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -1221,12 +1226,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -1781,12 +1787,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2137,12 +2144,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2275,12 +2283,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2445,12 +2454,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2591,12 +2601,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2743,12 +2754,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2869,12 +2881,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -2973,12 +2986,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -3239,12 +3253,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -3437,7 +3452,7 @@
       "accession": "016",
       "id": "Zj7fSZFSaBU",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-Лекция-1-12092015",
-      "title": "А. А. Зализняк Строй ведийского языка Лекция 1 12092015",
+      "title": "А. А. Зализняк. Строй ведийского языка. Лекция 1. 12.09.2015",
       "url": "https://www.youtube.com/watch?v=Zj7fSZFSaBU",
       "path": "v/016/",
       "legacy_path": "video/Zj7fSZFSaBU/",
@@ -3456,12 +3471,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=Zj7fSZFSaBU",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=Zj7fSZFSaBU",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -3600,7 +3634,7 @@
           "t": 961
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "017",
@@ -3623,12 +3657,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -4005,12 +4040,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -4399,12 +4435,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -4550,12 +4587,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -4701,12 +4739,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5085,12 +5124,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5413,12 +5453,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5452,12 +5493,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [],
       "last_verified_at": null
     },
@@ -5484,12 +5526,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5653,12 +5696,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5891,12 +5935,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5930,12 +5975,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -5977,12 +6023,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6016,12 +6063,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6059,12 +6107,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6262,12 +6311,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6303,12 +6353,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6342,12 +6393,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6502,12 +6554,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6549,12 +6602,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6600,12 +6654,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6643,12 +6698,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6684,12 +6740,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6733,12 +6790,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6780,12 +6838,13 @@
       "transcript": {
         "status": "none",
         "bucket": "none",
-        "label": "нет сведений",
+        "label": "нет",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6819,12 +6878,13 @@
       "transcript": {
         "status": "none",
         "bucket": "none",
-        "label": "нет сведений",
+        "label": "нет",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6866,12 +6926,13 @@
       "transcript": {
         "status": "none",
         "bucket": "none",
-        "label": "нет сведений",
+        "label": "нет",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6913,12 +6974,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6960,12 +7022,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6990,7 +7053,7 @@
       "accession": "046",
       "id": "Tz3T7IxsbLU",
       "title_source": "Зализняк. История русского ударения 16 10 29 семинар 08",
-      "title": "Зализняк. История русского ударения 16 10 29 семинар 08",
+      "title": "Зализняк. История русского ударения. Семинар 6. 15.10.2016",
       "url": "https://www.youtube.com/watch?v=Tz3T7IxsbLU",
       "path": "v/046/",
       "legacy_path": "video/Tz3T7IxsbLU/",
@@ -7009,12 +7072,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=Tz3T7IxsbLU",
+          "label": "YouTube title",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=Tz3T7IxsbLU",
+          "label": "YouTube title",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7045,7 +7127,7 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "047",
@@ -7070,12 +7152,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7129,12 +7212,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7172,12 +7256,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7215,12 +7300,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7254,12 +7340,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7293,12 +7380,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7336,12 +7424,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7358,7 +7447,7 @@
       "accession": "054",
       "id": "xIoXVxahvDY",
       "title_source": "Зализняк. История русского ударения. 06.05.2017. Семинар 26",
-      "title": "Зализняк. История русского ударения. 06.05.2017. Семинар 26",
+      "title": "Зализняк. История русского ударения. Семинар 22. 25.03.2017",
       "url": "https://www.youtube.com/watch?v=xIoXVxahvDY",
       "path": "v/054/",
       "legacy_path": "video/xIoXVxahvDY/",
@@ -7377,12 +7466,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=xIoXVxahvDY",
+          "label": "YouTube title",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=xIoXVxahvDY",
+          "label": "YouTube title",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7413,7 +7521,7 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "055",
@@ -7438,12 +7546,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7499,12 +7608,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7558,12 +7668,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "Падучева Е. В.",
@@ -7595,12 +7706,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7617,7 +7729,7 @@
       "accession": "059",
       "id": "XkzmxzvwAVQ",
       "title_source": "А-А-Зализняк-Грамматический-строй-санскрита-2014-2015-гг-Лекция--3-27092014",
-      "title": "А. А. Зализняк Грамматический строй санскрита 2014 2015 гг Лекция 3 27092014",
+      "title": "А. А. Зализняк. Грамматический строй санскрита. 2014-2015 гг. Лекция 3. 27.09.2014",
       "url": "https://www.youtube.com/watch?v=XkzmxzvwAVQ",
       "path": "v/059/",
       "legacy_path": "video/XkzmxzvwAVQ/",
@@ -7636,12 +7748,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=XkzmxzvwAVQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=XkzmxzvwAVQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7652,13 +7783,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "060",
       "id": "zjOVQqgwc1g",
       "title_source": "А-А-Зализняк-Грамматический-строй-санскрита-Лекция-1-13-09-2014-МГУ",
-      "title": "А. А. Зализняк Грамматический строй санскрита Лекция 1 13 09 2014 МГУ",
+      "title": "А. А. Зализняк. Грамматический строй санскрита. Лекция 1. 13. 09. 2014. МГУ",
       "url": "https://www.youtube.com/watch?v=zjOVQqgwc1g",
       "path": "v/060/",
       "legacy_path": "video/zjOVQqgwc1g/",
@@ -7677,12 +7808,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=zjOVQqgwc1g",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=zjOVQqgwc1g",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7693,13 +7843,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "061",
       "id": "lo2wxrH6U9s",
       "title_source": "А-А-Зализняк-Из-лекции-26-декабря-2011-г-Разбор-RV-10135",
-      "title": "А. А. Зализняк Из лекции 26 декабря 2011 г Разбор RV 10135",
+      "title": "А. А. Зализняк. Из лекции 26 декабря 2011 г. Разбор RV 10.135",
       "url": "https://www.youtube.com/watch?v=lo2wxrH6U9s",
       "path": "v/061/",
       "legacy_path": "video/lo2wxrH6U9s/",
@@ -7717,13 +7867,32 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=lo2wxrH6U9s",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=lo2wxrH6U9s",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7734,13 +7903,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "062",
       "id": "96yszA1N9r8",
       "title_source": "А-А-Зализняк-Из-лекции-27-ноября-2010-г-Разбор-RV-1034",
-      "title": "А. А. Зализняк Из лекции 27 ноября 2010 г Разбор RV 1034",
+      "title": "А. А. Зализняк. Из лекции 27 ноября 2010 г. Разбор RV 10.34",
       "url": "https://www.youtube.com/watch?v=96yszA1N9r8",
       "path": "v/062/",
       "legacy_path": "video/96yszA1N9r8/",
@@ -7758,13 +7927,32 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=96yszA1N9r8",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=96yszA1N9r8",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7775,13 +7963,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "063",
       "id": "9hz2kCabk5k",
       "title_source": "А-А-Зализняк-Из-лекции-4-декабря-2010-г-Разбор-RV-1034",
-      "title": "А. А. Зализняк Из лекции 4 декабря 2010 г Разбор RV 1034",
+      "title": "А. А. Зализняк. Из лекции 4 декабря 2010 г. Разбор RV 10.34",
       "url": "https://www.youtube.com/watch?v=9hz2kCabk5k",
       "path": "v/063/",
       "legacy_path": "video/9hz2kCabk5k/",
@@ -7799,13 +7987,32 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=9hz2kCabk5k",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=9hz2kCabk5k",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7816,13 +8023,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "064",
       "id": "6tPUfz8My4Y",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Аудиозапись-лекции-1-100916",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Аудиозапись лекции 1 100916",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Аудиозапись лекции 1. 10.09.16",
       "url": "https://www.youtube.com/watch?v=6tPUfz8My4Y",
       "path": "v/064/",
       "legacy_path": "video/6tPUfz8My4Y/",
@@ -7841,12 +8048,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=6tPUfz8My4Y",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=6tPUfz8My4Y",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7877,13 +8103,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "065",
       "id": "vs85X7hqFJs",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Аудиозапись-лекции-11-19112016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Аудиозапись лекции 11 19112016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Аудиозапись лекции 11. 19.11.2016",
       "url": "https://www.youtube.com/watch?v=vs85X7hqFJs",
       "path": "v/065/",
       "legacy_path": "video/vs85X7hqFJs/",
@@ -7902,12 +8128,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=vs85X7hqFJs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=vs85X7hqFJs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7938,13 +8183,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "066",
       "id": "l2TB7AY5Tus",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Аудиозапись-лекции-7--22102016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Аудиозапись лекции 7 22102016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Аудиозапись лекции 7. 22.10.2016",
       "url": "https://www.youtube.com/watch?v=l2TB7AY5Tus",
       "path": "v/066/",
       "legacy_path": "video/l2TB7AY5Tus/",
@@ -7963,12 +8208,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=l2TB7AY5Tus",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=l2TB7AY5Tus",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -7999,13 +8263,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "067",
       "id": "zBNyMMom0MQ",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-10-12112016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 10 12112016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 10. 12.11.2016",
       "url": "https://www.youtube.com/watch?v=zBNyMMom0MQ",
       "path": "v/067/",
       "legacy_path": "video/zBNyMMom0MQ/",
@@ -8024,12 +8288,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=zBNyMMom0MQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=zBNyMMom0MQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8060,13 +8343,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "068",
       "id": "DZ_-gKx1kAE",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-12-26112016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 12 26112016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 12. 26.11.2016",
       "url": "https://www.youtube.com/watch?v=DZ_-gKx1kAE",
       "path": "v/068/",
       "legacy_path": "video/DZ_-gKx1kAE/",
@@ -8085,12 +8368,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=DZ_-gKx1kAE",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=DZ_-gKx1kAE",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8121,13 +8423,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "069",
       "id": "VKDg5GQdzkw",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-13-03122016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 13 03122016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 13. 03.12.2016",
       "url": "https://www.youtube.com/watch?v=VKDg5GQdzkw",
       "path": "v/069/",
       "legacy_path": "video/VKDg5GQdzkw/",
@@ -8146,12 +8448,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=VKDg5GQdzkw",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=VKDg5GQdzkw",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8182,13 +8503,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "070",
       "id": "7ODUHMh-4-o",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-14-10122016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 14 10122016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 14. 10.12.2016",
       "url": "https://www.youtube.com/watch?v=7ODUHMh-4-o",
       "path": "v/070/",
       "legacy_path": "video/7ODUHMh-4-o/",
@@ -8207,12 +8528,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=7ODUHMh-4-o",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=7ODUHMh-4-o",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8243,13 +8583,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "071",
       "id": "ATtkvTx6_4o",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-15-17122016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 15 17122016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 15. 17.12.2016",
       "url": "https://www.youtube.com/watch?v=ATtkvTx6_4o",
       "path": "v/071/",
       "legacy_path": "video/ATtkvTx6_4o/",
@@ -8268,12 +8608,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=ATtkvTx6_4o",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=ATtkvTx6_4o",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8304,13 +8663,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "072",
       "id": "qWzBIm7x1Xc",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-16-11022017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 16 11022017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 16. 11.02.2017",
       "url": "https://www.youtube.com/watch?v=qWzBIm7x1Xc",
       "path": "v/072/",
       "legacy_path": "video/qWzBIm7x1Xc/",
@@ -8329,12 +8688,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=qWzBIm7x1Xc",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=qWzBIm7x1Xc",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8365,13 +8743,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "073",
       "id": "g8SdQX2JyCA",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-17-18022017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 17 18022017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 17. 18.02.2017",
       "url": "https://www.youtube.com/watch?v=g8SdQX2JyCA",
       "path": "v/073/",
       "legacy_path": "video/g8SdQX2JyCA/",
@@ -8390,12 +8768,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=g8SdQX2JyCA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=g8SdQX2JyCA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8426,13 +8823,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "074",
       "id": "_qtOnaehHOc",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-19-04032017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 19 04032017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 19. 04.03.2017",
       "url": "https://www.youtube.com/watch?v=_qtOnaehHOc",
       "path": "v/074/",
       "legacy_path": "video/_qtOnaehHOc/",
@@ -8451,12 +8848,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=_qtOnaehHOc",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=_qtOnaehHOc",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8487,13 +8903,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "075",
       "id": "yIMk-x5LVUs",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-2-17092016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 2 17092016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 2. 17.09.2016",
       "url": "https://www.youtube.com/watch?v=yIMk-x5LVUs",
       "path": "v/075/",
       "legacy_path": "video/yIMk-x5LVUs/",
@@ -8512,12 +8928,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=yIMk-x5LVUs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=yIMk-x5LVUs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8548,13 +8983,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "076",
       "id": "MiICdcfRCv0",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-20-11032017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 20 11032017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 20. 11.03.2017",
       "url": "https://www.youtube.com/watch?v=MiICdcfRCv0",
       "path": "v/076/",
       "legacy_path": "video/MiICdcfRCv0/",
@@ -8573,12 +9008,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=MiICdcfRCv0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=MiICdcfRCv0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8609,13 +9063,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "077",
       "id": "ursat5v2zqY",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-21-18032017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 21 18032017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 21. 18.03.2017",
       "url": "https://www.youtube.com/watch?v=ursat5v2zqY",
       "path": "v/077/",
       "legacy_path": "video/ursat5v2zqY/",
@@ -8634,12 +9088,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=ursat5v2zqY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=ursat5v2zqY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8670,13 +9143,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "078",
       "id": "YBsxqGK7jlg",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-22-25032017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 22 25032017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 22. 25.03.2017",
       "url": "https://www.youtube.com/watch?v=YBsxqGK7jlg",
       "path": "v/078/",
       "legacy_path": "video/YBsxqGK7jlg/",
@@ -8695,12 +9168,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=YBsxqGK7jlg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=YBsxqGK7jlg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8731,13 +9223,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "079",
       "id": "tnUBy-ULHcM",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-23-01042017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 23 01042017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 23. 01.04.2017.",
       "url": "https://www.youtube.com/watch?v=tnUBy-ULHcM",
       "path": "v/079/",
       "legacy_path": "video/tnUBy-ULHcM/",
@@ -8756,12 +9248,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=tnUBy-ULHcM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=tnUBy-ULHcM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8792,13 +9303,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "080",
       "id": "lhd8aa6f4ng",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-24-24042017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 24 24042017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 24. 24.04.2017",
       "url": "https://www.youtube.com/watch?v=lhd8aa6f4ng",
       "path": "v/080/",
       "legacy_path": "video/lhd8aa6f4ng/",
@@ -8817,12 +9328,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=lhd8aa6f4ng",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=lhd8aa6f4ng",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8853,13 +9383,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "081",
       "id": "Z7ffIHNqvnU",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-25-29042017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 25 29042017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 25. 29.04.2017",
       "url": "https://www.youtube.com/watch?v=Z7ffIHNqvnU",
       "path": "v/081/",
       "legacy_path": "video/Z7ffIHNqvnU/",
@@ -8878,12 +9408,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=Z7ffIHNqvnU",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=Z7ffIHNqvnU",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8914,13 +9463,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "082",
       "id": "E5jSUrve0Ps",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-27-13052017",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 27 13052017",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 27. 13.05.2017",
       "url": "https://www.youtube.com/watch?v=E5jSUrve0Ps",
       "path": "v/082/",
       "legacy_path": "video/E5jSUrve0Ps/",
@@ -8939,12 +9488,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=E5jSUrve0Ps",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=E5jSUrve0Ps",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -8975,13 +9543,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "083",
       "id": "O4f_h2YVx64",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-3-24092016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 3 24092016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 3. 24.09.2016",
       "url": "https://www.youtube.com/watch?v=O4f_h2YVx64",
       "path": "v/083/",
       "legacy_path": "video/O4f_h2YVx64/",
@@ -9000,12 +9568,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=O4f_h2YVx64",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=O4f_h2YVx64",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9036,13 +9623,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "084",
       "id": "t5mpQaotzS0",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-4-01102016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 4 01102016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 4. 01.10.2016",
       "url": "https://www.youtube.com/watch?v=t5mpQaotzS0",
       "path": "v/084/",
       "legacy_path": "video/t5mpQaotzS0/",
@@ -9061,12 +9648,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=t5mpQaotzS0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=t5mpQaotzS0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9097,13 +9703,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "085",
       "id": "59hxvoyQ7QA",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-5-08102016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 5 08102016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 5. 08.10.2016",
       "url": "https://www.youtube.com/watch?v=59hxvoyQ7QA",
       "path": "v/085/",
       "legacy_path": "video/59hxvoyQ7QA/",
@@ -9122,12 +9728,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=59hxvoyQ7QA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=59hxvoyQ7QA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9158,13 +9783,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "086",
       "id": "n-Td297bXfc",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-8-29102016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 8 29102016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 8. 29.10.2016",
       "url": "https://www.youtube.com/watch?v=n-Td297bXfc",
       "path": "v/086/",
       "legacy_path": "video/n-Td297bXfc/",
@@ -9183,12 +9808,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=n-Td297bXfc",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=n-Td297bXfc",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9219,13 +9863,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "087",
       "id": "q-_9DQqHCho",
       "title_source": "А-А-Зализняк-История-русского-ударения-2016-2017-гг-Лекция-9-05112016",
-      "title": "А. А. Зализняк История русского ударения 2016 2017 гг Лекция 9 05112016",
+      "title": "А. А. Зализняк. История русского ударения. 2016-2017 гг. Лекция 9. 05.11.2016",
       "url": "https://www.youtube.com/watch?v=q-_9DQqHCho",
       "path": "v/087/",
       "legacy_path": "video/q-_9DQqHCho/",
@@ -9244,12 +9888,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=q-_9DQqHCho",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=q-_9DQqHCho",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9280,13 +9943,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "088",
       "id": "s77yjzvyFD0",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Аудиозапись-лекции-2-23092017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Аудиозапись лекции 2 23092017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Аудиозапись лекции 2. 23.09.2017",
       "url": "https://www.youtube.com/watch?v=s77yjzvyFD0",
       "path": "v/088/",
       "legacy_path": "video/s77yjzvyFD0/",
@@ -9305,12 +9968,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=s77yjzvyFD0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=s77yjzvyFD0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9341,13 +10023,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "089",
       "id": "9A1ULx6Fgeg",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-1-16092017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 1 16092017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 1. 16.09.2017",
       "url": "https://www.youtube.com/watch?v=9A1ULx6Fgeg",
       "path": "v/089/",
       "legacy_path": "video/9A1ULx6Fgeg/",
@@ -9366,12 +10048,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=9A1ULx6Fgeg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=9A1ULx6Fgeg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9402,13 +10103,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "090",
       "id": "FaJu6mWgGyw",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-10-18112017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 10 18112017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 10. 18.11.2017",
       "url": "https://www.youtube.com/watch?v=FaJu6mWgGyw",
       "path": "v/090/",
       "legacy_path": "video/FaJu6mWgGyw/",
@@ -9427,12 +10128,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=FaJu6mWgGyw",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=FaJu6mWgGyw",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9463,13 +10183,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "091",
       "id": "2KfoHYELQbs",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-11-25112017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 11 25112017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 11. 25.11.2017",
       "url": "https://www.youtube.com/watch?v=2KfoHYELQbs",
       "path": "v/091/",
       "legacy_path": "video/2KfoHYELQbs/",
@@ -9488,12 +10208,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=2KfoHYELQbs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=2KfoHYELQbs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9524,13 +10263,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "092",
       "id": "en2CCm5Zolk",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-12-02122017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 12 02122017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 12. 02.12.2017",
       "url": "https://www.youtube.com/watch?v=en2CCm5Zolk",
       "path": "v/092/",
       "legacy_path": "video/en2CCm5Zolk/",
@@ -9549,12 +10288,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=en2CCm5Zolk",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=en2CCm5Zolk",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9585,13 +10343,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "093",
       "id": "TNbu8fhFRcM",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-13-09122017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 13 09122017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 13. 09.12.2017",
       "url": "https://www.youtube.com/watch?v=TNbu8fhFRcM",
       "path": "v/093/",
       "legacy_path": "video/TNbu8fhFRcM/",
@@ -9610,12 +10368,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=TNbu8fhFRcM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=TNbu8fhFRcM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9646,13 +10423,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "094",
       "id": "6nFkEysA3XU",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-14-последняя-16122017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 14 последняя 16122017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 14, последняя. 16.12.2017",
       "url": "https://www.youtube.com/watch?v=6nFkEysA3XU",
       "path": "v/094/",
       "legacy_path": "video/6nFkEysA3XU/",
@@ -9671,12 +10448,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=6nFkEysA3XU",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=6nFkEysA3XU",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9707,13 +10503,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "095",
       "id": "TBuor2fBzRs",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-3-30092017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 3 30092017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 3. 30.09.2017",
       "url": "https://www.youtube.com/watch?v=TBuor2fBzRs",
       "path": "v/095/",
       "legacy_path": "video/TBuor2fBzRs/",
@@ -9732,12 +10528,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=TBuor2fBzRs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=TBuor2fBzRs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9768,13 +10583,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "096",
       "id": "2SJRCTaEyQM",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-4-07102017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 4 07102017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 4. 07.10.2017",
       "url": "https://www.youtube.com/watch?v=2SJRCTaEyQM",
       "path": "v/096/",
       "legacy_path": "video/2SJRCTaEyQM/",
@@ -9793,12 +10608,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=2SJRCTaEyQM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=2SJRCTaEyQM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9829,13 +10663,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "097",
       "id": "BkvqayCnNK4",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-5-14102017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 5 14102017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 5. 14.10.2017",
       "url": "https://www.youtube.com/watch?v=BkvqayCnNK4",
       "path": "v/097/",
       "legacy_path": "video/BkvqayCnNK4/",
@@ -9854,12 +10688,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=BkvqayCnNK4",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=BkvqayCnNK4",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9890,13 +10743,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "098",
       "id": "p_frWa3r22o",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-6-21102017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 6 21102017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 6. 21.10.2017",
       "url": "https://www.youtube.com/watch?v=p_frWa3r22o",
       "path": "v/098/",
       "legacy_path": "video/p_frWa3r22o/",
@@ -9915,12 +10768,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=p_frWa3r22o",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=p_frWa3r22o",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -9951,13 +10823,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "099",
       "id": "lAais7xEHEA",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-7-28102017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 7 28102017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 7. 28.10.2017",
       "url": "https://www.youtube.com/watch?v=lAais7xEHEA",
       "path": "v/099/",
       "legacy_path": "video/lAais7xEHEA/",
@@ -9976,12 +10848,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=lAais7xEHEA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=lAais7xEHEA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10012,13 +10903,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "100",
       "id": "kDjo6BgqIu4",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-8-06112017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 8 06112017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 8. 06.11.2017",
       "url": "https://www.youtube.com/watch?v=kDjo6BgqIu4",
       "path": "v/100/",
       "legacy_path": "video/kDjo6BgqIu4/",
@@ -10037,12 +10928,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=kDjo6BgqIu4",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=kDjo6BgqIu4",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10073,13 +10983,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "101",
       "id": "X_KpSp0AlxM",
       "title_source": "А-А-Зализняк-История-русского-ударения-2017-г-Лекция-9-11112017",
-      "title": "А. А. Зализняк История русского ударения 2017 г Лекция 9 11112017",
+      "title": "А. А. Зализняк. История русского ударения. 2017 г. Лекция 9. 11.11.2017",
       "url": "https://www.youtube.com/watch?v=X_KpSp0AlxM",
       "path": "v/101/",
       "legacy_path": "video/X_KpSp0AlxM/",
@@ -10098,12 +11008,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=X_KpSp0AlxM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=X_KpSp0AlxM",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10134,13 +11063,13 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "102",
       "id": "xJepf-YTRmE",
       "title_source": "А-А-Зализняк-Начало-лекции-11-декабря-2010-г-МГУ",
-      "title": "А. А. Зализняк Начало лекции 11 декабря 2010 г МГУ",
+      "title": "А. А. Зализняк. Начало лекции 11 декабря 2010 г. МГУ",
       "url": "https://www.youtube.com/watch?v=xJepf-YTRmE",
       "path": "v/102/",
       "legacy_path": "video/xJepf-YTRmE/",
@@ -10159,12 +11088,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=xJepf-YTRmE",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=xJepf-YTRmE",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10187,13 +11135,13 @@
           "type": "lexicon"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "103",
       "id": "8pF86C0qoOs",
       "title_source": "А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г",
-      "title": "А. А. Зализняк Начало лекции по санскриту 18 декабря 2010 г",
+      "title": "А. А. Зализняк. Начало лекции по санскриту 18 декабря 2010 г.",
       "url": "https://www.youtube.com/watch?v=8pF86C0qoOs",
       "path": "v/103/",
       "legacy_path": "video/8pF86C0qoOs/",
@@ -10212,12 +11160,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=8pF86C0qoOs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=8pF86C0qoOs",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10240,13 +11207,13 @@
           "type": "lexicon"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "104",
       "id": "fHEpCOpieBg",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-10-21112015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 10 21112015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 10. 21.11.2015",
       "url": "https://www.youtube.com/watch?v=fHEpCOpieBg",
       "path": "v/104/",
       "legacy_path": "video/fHEpCOpieBg/",
@@ -10265,12 +11232,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=fHEpCOpieBg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=fHEpCOpieBg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10281,13 +11267,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "105",
       "id": "p_2gPOxRzNQ",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-11-28112015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 11 28112015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 11. 28.11.2015",
       "url": "https://www.youtube.com/watch?v=p_2gPOxRzNQ",
       "path": "v/105/",
       "legacy_path": "video/p_2gPOxRzNQ/",
@@ -10306,12 +11292,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=p_2gPOxRzNQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=p_2gPOxRzNQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10322,13 +11327,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "106",
       "id": "b2iEGo1zJaY",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-12-05122015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 12 05122015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 12. 05.12.2015",
       "url": "https://www.youtube.com/watch?v=b2iEGo1zJaY",
       "path": "v/106/",
       "legacy_path": "video/b2iEGo1zJaY/",
@@ -10346,13 +11351,32 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=b2iEGo1zJaY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=b2iEGo1zJaY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10363,13 +11387,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "107",
       "id": "x7QR2a8bCOI",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-13-12122015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 13 12122015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 13. 12.12.2015",
       "url": "https://www.youtube.com/watch?v=x7QR2a8bCOI",
       "path": "v/107/",
       "legacy_path": "video/x7QR2a8bCOI/",
@@ -10388,12 +11412,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=x7QR2a8bCOI",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=x7QR2a8bCOI",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10404,13 +11447,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "108",
       "id": "USk4wmZK-8U",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-13-30042016",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 13 30042016",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 13. 30.04.2016",
       "url": "https://www.youtube.com/watch?v=USk4wmZK-8U",
       "path": "v/108/",
       "legacy_path": "video/USk4wmZK-8U/",
@@ -10429,12 +11472,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=USk4wmZK-8U",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=USk4wmZK-8U",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10445,7 +11507,7 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "109",
@@ -10470,12 +11532,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10492,7 +11555,7 @@
       "accession": "110",
       "id": "BVi1hQPY-cQ",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-15-13022016",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 15 13022016",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 15. 13.02.2016",
       "url": "https://www.youtube.com/watch?v=BVi1hQPY-cQ",
       "path": "v/110/",
       "legacy_path": "video/BVi1hQPY-cQ/",
@@ -10511,12 +11574,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=BVi1hQPY-cQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=BVi1hQPY-cQ",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10527,13 +11609,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "111",
       "id": "sFNo06IsUAE",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-16-22022016",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 16 22022016",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 16. 22.02.2016",
       "url": "https://www.youtube.com/watch?v=sFNo06IsUAE",
       "path": "v/111/",
       "legacy_path": "video/sFNo06IsUAE/",
@@ -10552,12 +11634,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=sFNo06IsUAE",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=sFNo06IsUAE",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10568,13 +11669,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "112",
       "id": "0zMwn0H95Ks",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-17-27022016",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 17 27022016",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 17. 27.02.2016",
       "url": "https://www.youtube.com/watch?v=0zMwn0H95Ks",
       "path": "v/112/",
       "legacy_path": "video/0zMwn0H95Ks/",
@@ -10593,12 +11694,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=0zMwn0H95Ks",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=0zMwn0H95Ks",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10609,13 +11729,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "113",
       "id": "pjd_mKDoJuA",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-18-05032016",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 18 05032016",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 18. 05.03.2016",
       "url": "https://www.youtube.com/watch?v=pjd_mKDoJuA",
       "path": "v/113/",
       "legacy_path": "video/pjd_mKDoJuA/",
@@ -10634,12 +11754,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=pjd_mKDoJuA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=pjd_mKDoJuA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10650,13 +11789,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "114",
       "id": "5G_x7XwWmgo",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-20-19032016",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 20 19032016",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 20. 19.03.2016",
       "url": "https://www.youtube.com/watch?v=5G_x7XwWmgo",
       "path": "v/114/",
       "legacy_path": "video/5G_x7XwWmgo/",
@@ -10675,12 +11814,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=5G_x7XwWmgo",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=5G_x7XwWmgo",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10691,13 +11849,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "115",
       "id": "GgIxLPPC7uA",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-22-230416",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 22 230416",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 22. 23.04.16",
       "url": "https://www.youtube.com/watch?v=GgIxLPPC7uA",
       "path": "v/115/",
       "legacy_path": "video/GgIxLPPC7uA/",
@@ -10716,12 +11874,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=GgIxLPPC7uA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=GgIxLPPC7uA",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10732,13 +11909,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "116",
       "id": "k3XJBG7jgzk",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-3-260915",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 3 260915",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 3. 26.09.15",
       "url": "https://www.youtube.com/watch?v=k3XJBG7jgzk",
       "path": "v/116/",
       "legacy_path": "video/k3XJBG7jgzk/",
@@ -10756,13 +11933,32 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=k3XJBG7jgzk",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=k3XJBG7jgzk",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10773,13 +11969,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "117",
       "id": "x2HbNS8OCqY",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-6-17102015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 6 17102015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 6. 17.10.2015",
       "url": "https://www.youtube.com/watch?v=x2HbNS8OCqY",
       "path": "v/117/",
       "legacy_path": "video/x2HbNS8OCqY/",
@@ -10798,12 +11994,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=x2HbNS8OCqY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=x2HbNS8OCqY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10814,13 +12029,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "118",
       "id": "L3b1APWXOws",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-7-311015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 7 311015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 7. 31.10.15",
       "url": "https://www.youtube.com/watch?v=L3b1APWXOws",
       "path": "v/118/",
       "legacy_path": "video/L3b1APWXOws/",
@@ -10838,13 +12053,32 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=L3b1APWXOws",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=L3b1APWXOws",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10855,13 +12089,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "119",
       "id": "G2Dj7e8HHeo",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-8-07112015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 8 07112015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 8. 07.11.2015",
       "url": "https://www.youtube.com/watch?v=G2Dj7e8HHeo",
       "path": "v/119/",
       "legacy_path": "video/G2Dj7e8HHeo/",
@@ -10880,12 +12114,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=G2Dj7e8HHeo",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=G2Dj7e8HHeo",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10896,13 +12149,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "120",
       "id": "DiH4bfrKlk0",
       "title_source": "А-А-Зализняк-Строй-ведийского-языка-2015-2016-гг-Лекция-9-13112015",
-      "title": "А. А. Зализняк Строй ведийского языка 2015 2016 гг Лекция 9 13112015",
+      "title": "А. А. Зализняк. Строй ведийского языка. 2015-2016 гг. Лекция 9. 13.11.2015",
       "url": "https://www.youtube.com/watch?v=DiH4bfrKlk0",
       "path": "v/120/",
       "legacy_path": "video/DiH4bfrKlk0/",
@@ -10921,12 +12174,31 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=DiH4bfrKlk0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=DiH4bfrKlk0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -10937,7 +12209,7 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "121",
@@ -10961,13 +12233,14 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11014,13 +12287,14 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11067,13 +12341,14 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11121,12 +12396,31 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=RZW_tDZnvJo",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=RZW_tDZnvJo",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11137,13 +12431,13 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "125",
       "id": "EcpmjEdjzUY",
       "title_source": "Грамматический-строй-санскрита-2014-2015-гг-Лекция-2-20-сентября-2014-г",
-      "title": "Грамматический строй санскрита 2014 2015 гг Лекция 2 20 сентября 2014 г",
+      "title": "Грамматический строй санскрита. 2014-2015 гг. Лекция 2. 20 сентября 2014 г.",
       "url": "https://www.youtube.com/watch?v=EcpmjEdjzUY",
       "path": "v/125/",
       "legacy_path": "video/EcpmjEdjzUY/",
@@ -11162,20 +12456,39 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=EcpmjEdjzUY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=EcpmjEdjzUY",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "126",
       "id": "X3nZS4YoeT0",
       "title_source": "Грамматический-строй-санскрита-2014-2015-гг-Лекция-4-04102014",
-      "title": "Грамматический строй санскрита 2014 2015 гг Лекция 4 04102014",
+      "title": "Грамматический строй санскрита. 2014-2015 гг. Лекция 4. 04.10.2014",
       "url": "https://www.youtube.com/watch?v=X3nZS4YoeT0",
       "path": "v/126/",
       "legacy_path": "video/X3nZS4YoeT0/",
@@ -11193,21 +12506,40 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=X3nZS4YoeT0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=X3nZS4YoeT0",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "127",
       "id": "o4DFvnwjXyg",
       "title_source": "Грамматический-строй-санскрита-2014-2015-гг-Лекция-5-11-10-2014",
-      "title": "Грамматический строй санскрита 2014 2015 гг Лекция 5 11 10 2014",
+      "title": "Грамматический строй санскрита. 2014-2015 гг. Лекция 5. 11. 10. 2014.",
       "url": "https://www.youtube.com/watch?v=o4DFvnwjXyg",
       "path": "v/127/",
       "legacy_path": "video/o4DFvnwjXyg/",
@@ -11225,21 +12557,40 @@
       "contributors": [],
       "transcript": {
         "status": "unknown",
-        "bucket": "indexed",
-        "label": "есть сведения",
+        "bucket": "none",
+        "label": "статус неизвестен",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=o4DFvnwjXyg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=o4DFvnwjXyg",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "128",
       "id": "_x0FFVA-QGw",
       "title_source": "Перед-лекцией-академика-А-А-Зализняка-Октябрь-2017-г-ГЗ-МГУ",
-      "title": "Перед лекцией академика А. А. Зализняка Октябрь 2017 г ГЗ МГУ",
+      "title": "Перед лекцией академика А. А. Зализняка. Октябрь 2017 г., ГЗ МГУ",
       "url": "https://www.youtube.com/watch?v=_x0FFVA-QGw",
       "path": "v/128/",
       "legacy_path": "video/_x0FFVA-QGw/",
@@ -11256,12 +12607,31 @@
       "transcript": {
         "status": "none",
         "bucket": "none",
-        "label": "нет сведений",
+        "label": "нет",
         "url": null,
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=_x0FFVA-QGw",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=_x0FFVA-QGw",
+          "label": "YouTube title (oEmbed)",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "title_display"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11276,7 +12646,7 @@
           "type": "lexicon"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-04"
     },
     {
       "accession": "129",
@@ -11299,12 +12669,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11348,12 +12719,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [],
       "last_verified_at": null
     },
@@ -11380,12 +12752,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11423,12 +12796,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [],
       "last_verified_at": null
     },
@@ -11455,12 +12829,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "Новгород",
@@ -11494,12 +12869,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [],
       "last_verified_at": null
     },
@@ -11524,12 +12900,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [],
       "last_verified_at": null
     },
@@ -11554,12 +12931,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "Гиппиус А. А.",
@@ -11593,12 +12971,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "Гиппиус А. А.",
@@ -11632,12 +13011,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11675,12 +13055,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11714,12 +13095,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11769,12 +13151,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11812,12 +13195,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11855,12 +13239,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11898,12 +13283,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11941,12 +13327,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -11996,12 +13383,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12051,12 +13439,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12094,12 +13483,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12133,12 +13523,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12180,12 +13571,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12223,12 +13615,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12266,12 +13659,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12309,12 +13703,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12356,12 +13751,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12399,12 +13795,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12450,12 +13847,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12497,12 +13895,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12560,12 +13959,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12599,12 +13999,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12638,12 +14039,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12677,12 +14079,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12730,12 +14133,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "новгородский",
@@ -12771,12 +14175,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "Гиппиус А. А.",
@@ -12812,12 +14217,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12851,12 +14257,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12908,12 +14315,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12951,12 +14359,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -12998,12 +14407,13 @@
       "transcript": {
         "status": "partial",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "частичная",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "Новгород",
@@ -13033,12 +14443,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13072,12 +14483,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13119,12 +14531,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13162,12 +14575,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13250,12 +14664,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13291,12 +14706,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13330,12 +14746,13 @@
       "transcript": {
         "status": "automatic",
         "bucket": "indexed",
-        "label": "есть сведения",
+        "label": "автоматическая",
         "url": null,
         "verified": false
       },
       "bibliography": [],
       "provenance": [],
+      "evidence": [],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13351,6 +14768,97 @@
         }
       ],
       "last_verified_at": null
+    },
+    {
+      "accession": "176",
+      "id": "spqW9cz7Gk0",
+      "title_source": "А. А. Зализняк: История русского ударения. Семинар 28",
+      "title": "А. А. Зализняк: История русского ударения. Семинар 28",
+      "url": "https://www.youtube.com/watch?v=spqW9cz7Gk0",
+      "path": "v/176/",
+      "legacy_path": "video/spqW9cz7Gk0/",
+      "date_recorded": "2017-05-20",
+      "upload_date": "2019-10-26",
+      "year": "2017",
+      "duration": 4706,
+      "topics": [
+        "русистика"
+      ],
+      "topic": "русистика",
+      "type": "семинар",
+      "purpose": null,
+      "series": null,
+      "contributors": [
+        {
+          "name": "А. А. Зализняк",
+          "role": "lecturer"
+        }
+      ],
+      "transcript": {
+        "status": "unknown",
+        "bucket": "none",
+        "label": "статус неизвестен",
+        "url": null,
+        "verified": false
+      },
+      "bibliography": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=spqW9cz7Gk0",
+          "label": "YouTube metadata",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "upload_date"
+          ]
+        },
+        {
+          "url": "https://www.mathnet.ru/rus/person9125",
+          "label": "MathNet person and event record",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "contributors",
+            "date_recorded"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=spqW9cz7Gk0",
+          "label": "YouTube metadata",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "upload_date"
+          ]
+        },
+        {
+          "url": "https://www.mathnet.ru/rus/person9125",
+          "label": "MathNet person and event record",
+          "accessed_at": "2026-08-04",
+          "supports": [
+            "contributors",
+            "date_recorded"
+          ]
+        }
+      ],
+      "related_entities": [
+        {
+          "head": "А. А. Зализняк",
+          "type": "names"
+        },
+        {
+          "head": "Зализняк А. А.",
+          "type": "names"
+        },
+        {
+          "head": "русский",
+          "type": "languages"
+        },
+        {
+          "head": "ударение",
+          "type": "subject_index"
+        }
+      ],
+      "last_verified_at": "2026-08-04"
     }
   ]
 }

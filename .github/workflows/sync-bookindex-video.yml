@@ -1,0 +1,57 @@
+name: Check BookIndex video evidence sync
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out ZalizniakVideo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build and validate BookIndex v2 candidate
+        id: sync
+        continue-on-error: true
+        run: python scripts/sync_bookindex.py --fail-on-drift
+
+      - name: Upload actionable binary patch
+        if: ${{ hashFiles('.sync-artifacts/bookindex-video-v2.patch') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: bookindex-video-v2-binary-patch
+          path: .sync-artifacts/bookindex-video-v2.patch
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Upload raw-export integrity metadata
+        if: ${{ hashFiles('.sync-artifacts/bookindex-video-v2-sync.json') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: bookindex-video-v2-integrity
+          path: .sync-artifacts/bookindex-video-v2-sync.json
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Report valid catalog drift
+        if: ${{ steps.sync.outcome == 'failure' && hashFiles('.sync-artifacts/bookindex-video-v2.patch') != '' }}
+        run: |
+          echo "BookIndex v2 is valid, but generated files drifted."
+          echo "Download the bookindex-video-v2-binary-patch artifact, inspect it with 'git apply --stat', then apply it with 'git apply --binary' on a review branch."
+          exit 1
+
+      - name: Report malformed export or validation failure
+        if: ${{ steps.sync.outcome == 'failure' && hashFiles('.sync-artifacts/bookindex-video-v2.patch') == '' }}
+        run: |
+          echo "BookIndex sync failed before a valid candidate could be applied. See the accession-specific sync/validation diagnostic above."
+          exit 1
