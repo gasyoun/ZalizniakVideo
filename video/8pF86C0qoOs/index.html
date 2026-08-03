@@ -1,236 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г — Зализняк</title>
-<meta name="description" content="Видеолекция: А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г. А. А. Зализняк.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://gasyoun.github.io/ZalizniakVideo/video/8pF86C0qoOs/">
+<title>Запись перемещена</title>
+<meta name="description" content="Старая ссылка на архивную видеозапись.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://gasyoun.github.io/ZaliznjakVideo/v/103/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г — Зализняк">
-<meta property="og:description" content="Видеолекция: А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г. А. А. Зализняк.">
-<meta property="og:url" content="https://gasyoun.github.io/ZalizniakVideo/video/8pF86C0qoOs/">
-<meta name="theme-color" content="#8c3a15">
+<meta property="og:title" content="Запись перемещена">
+<meta property="og:description" content="Старая ссылка на архивную видеозапись.">
+<meta property="og:url" content="https://gasyoun.github.io/ZaliznjakVideo/v/103/">
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="theme-color" content="#7a2f2b">
 <style>
 :root {
-  --bg: #f7f1e6;
-  --ink: #2a1f12;
-  --muted: #6b5640;
-  --card: #fffdf8;
-  --line: #d9c9b0;
-  --accent: #8c3a15;
-  --accent-soft: #f0e0d0;
-  --link: #6b2e10;
-  --warn: #8a4b00;
-  --ok: #2f5d3a;
-  --radius: 10px;
-  --max: 52rem;
-  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: light dark;
+  --paper: #f4efe5;
+  --surface: #fbf8f1;
+  --surface-strong: #fffdf8;
+  --ink: #24211d;
+  --muted: #676057;
+  --line: #cfc6b8;
+  --accent: #7a2f2b;
+  --accent-strong: #5f211e;
+  --action: #712621;
+  --focus: #7a2f2b;
+  --player: #171512;
+  --radius-sm: .25rem;
+  --radius-md: .5rem;
+  --radius-lg: .75rem;
+  --max: 88rem;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #181715;
+    --surface: #211f1c;
+    --surface-strong: #292622;
+    --ink: #f1ece2;
+    --muted: #bbb2a5;
+    --line: #4a443c;
+    --accent: #d58a82;
+    --accent-strong: #efaaa2;
+    --action: #934640;
+    --focus: #efaaa2;
+    --player: #0b0a09;
+  }
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: var(--font);
+  background: var(--paper);
   color: var(--ink);
-  background: var(--bg);
+  font-family: var(--sans);
   line-height: 1.55;
 }
-a { color: var(--link); }
-a:hover { color: var(--accent); }
+a { color: var(--accent-strong); text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: .12em; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: .18rem solid var(--focus);
+  outline-offset: .16rem;
 }
-.wrap { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1rem 3rem; }
-header.site {
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #fffaf1, var(--bg));
-  margin-bottom: 1.25rem;
+.skip-link {
+  position: fixed; left: .75rem; top: .75rem; z-index: 20;
+  transform: translateY(-180%); padding: .7rem 1rem;
+  background: var(--surface-strong); color: var(--ink); border: 1px solid var(--line);
 }
-header.site .wrap { padding-bottom: 1rem; }
-.brand { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.02em; }
-h1 { font-size: clamp(1.45rem, 3vw, 1.9rem); margin: 0.2rem 0 0.4rem; line-height: 1.25; }
-.lede { color: var(--muted); margin: 0 0 0.75rem; max-width: 40rem; }
-.meta-bar {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 0.85rem;
-  font-size: 0.92rem; color: var(--muted);
+.skip-link:focus { transform: translateY(0); }
+.wrap { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
+.masthead { border-bottom: 1px solid var(--line); padding: 1.2rem 0 1.4rem; }
+.brand-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.brand { font: 600 .78rem/1 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--muted); }
+.accession { font-variant-numeric: tabular-nums; letter-spacing: .08em; color: var(--muted); }
+h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: -.018em; text-wrap: balance; }
+h1 { max-width: 25ch; margin: .45rem 0 .35rem; font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.08; }
+h2 { margin: 0 0 .6rem; font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.2; }
+.lede { max-width: 66ch; margin: 0; color: var(--muted); text-wrap: pretty; }
+.archive-facts { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin-top: .8rem; color: var(--muted); font-size: .9rem; }
+.archive-facts strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+main { padding-block: 1.25rem 3rem; }
+.filters {
+  display: grid; grid-template-columns: minmax(13rem, 2fr) repeat(5, minmax(8rem, 1fr)); gap: .65rem;
+  padding: .8rem; margin-bottom: .7rem; border: 1px solid var(--line);
+  border-radius: var(--radius-lg); background: var(--surface);
 }
-.meta-bar strong { color: var(--ink); font-weight: 600; }
-.controls {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.65rem;
-  margin: 1rem 0 0.75rem;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: color-mix(in srgb, var(--bg) 92%, white);
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--line);
-}
-@media (min-width: 640px) {
-  .controls { grid-template-columns: 1.4fr 0.8fr 0.8fr; align-items: end; }
-}
-label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.2rem; }
+.field { min-width: 0; }
+.field label { display: block; margin-bottom: .18rem; color: var(--muted); font-size: .76rem; font-weight: 600; }
+input, select, button { font: inherit; }
 input[type="search"], select {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card);
-  color: var(--ink);
-  font: inherit;
+  width: 100%; max-width: 100%; min-width: 0; min-height: 2.75rem; padding: .55rem .65rem;
+  color: var(--ink); background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-sm);
 }
-#result-count[role="status"] { font-size: 0.9rem; color: var(--muted); min-height: 1.3em; }
-.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 0.75rem 0.9rem;
-  display: grid;
-  gap: 0.25rem;
+.filter-actions { display: flex; align-items: end; }
+.reset, .button {
+  min-height: 2.75rem; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: .55rem .8rem; background: var(--surface-strong); color: var(--ink); cursor: pointer;
 }
-.card a.title {
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--ink);
-  font-size: 1.02rem;
-}
-.card a.title:hover { color: var(--accent); text-decoration: underline; }
-.card .row { font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.35rem 0.75rem; }
-.chip {
-  display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.12rem 0.45rem;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
-}
-.chip.warn { background: #fff1d6; color: var(--warn); }
-.empty {
-  display: none;
-  padding: 1.25rem;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-  color: var(--muted);
-  background: var(--card);
-}
+.reset:hover, .button:hover { border-color: var(--accent); color: var(--accent-strong); }
+.results { min-height: 1.5rem; margin: .55rem 0 .75rem; color: var(--muted); font-size: .9rem; }
+.gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.card { min-width: 0; background: var(--surface); border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+.card-link { display: block; color: inherit; text-decoration: none; }
+.thumb { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--player); border-radius: var(--radius-md); }
+.card-link:hover .thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card-kicker { display: flex; justify-content: space-between; gap: .7rem; margin-top: .55rem; font-size: .75rem; color: var(--muted); }
+.card h2 { margin: .25rem 0 .3rem; font-size: 1.12rem; line-height: 1.25; overflow-wrap: anywhere; }
+.card-meta, .card-tags, .contributors { margin: .18rem 0 0; color: var(--muted); font-size: .82rem; }
+.card-tags { color: var(--ink); }
+.empty { display: none; padding: 2rem 1rem; border: 1px dashed var(--line); border-radius: var(--radius-md); text-align: center; color: var(--muted); }
 .empty.show { display: block; }
-.player {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #1a120a;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  margin: 1rem 0;
-}
-.player iframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
-}
-.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 1rem; }
-.btn {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.92rem;
-}
-.btn.primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-.btn.primary:hover { filter: brightness(1.05); color: #fff; }
-.section { margin: 1.25rem 0; }
-.section h2 { font-size: 1.1rem; margin: 0 0 0.5rem; }
-.entities { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.entity {
-  font-size: 0.8rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 6px;
-  background: #efe6d7;
-  border: 1px solid var(--line);
-}
-.entity .t { color: var(--muted); margin-left: 0.25rem; font-variant-numeric: tabular-nums; }
-.crumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
-.crumbs a { color: var(--muted); }
-.note {
-  font-size: 0.88rem;
-  color: var(--muted);
-  border-left: 3px solid var(--line);
-  padding: 0.35rem 0 0.35rem 0.75rem;
-  margin: 0.75rem 0;
-}
-footer.site {
-  margin-top: 2.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-footer.site a { color: var(--muted); }
 .hidden { display: none !important; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+.breadcrumbs { margin: 0 0 .6rem; font-size: .86rem; color: var(--muted); }
+.detail-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(16rem, .85fr); gap: 2rem; align-items: start; }
+.player-shell { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: var(--radius-lg); background: var(--player); }
+.player-button { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: var(--player); color: white; }
+.player-button img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .75; }
+.play-label { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); min-height: 2.75rem; display: inline-flex; align-items: center; padding: .65rem 1rem; border-radius: var(--radius-sm); background: rgba(20,18,15,.9); color: #fff; font-weight: 600; }
+.player-shell iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.watch-fallback { margin: .55rem 0 0; font-size: .86rem; }
+.detail-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1rem 0 1.6rem; }
+.button { display: inline-flex; align-items: center; text-decoration: none; }
+.button.primary { border-color: var(--action); background: var(--action); color: #fff; }
+.button.primary:hover { filter: brightness(.9); color: #fff; }
+.section { margin-top: 1.7rem; }
+.facts { margin: 0; }
+.facts div { display: grid; grid-template-columns: minmax(7rem, .7fr) 1.5fr; gap: .7rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; overflow-wrap: anywhere; }
+.entity-list { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; list-style: none; }
+.entity-list li { padding: .3rem .5rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); font-size: .83rem; }
+.note { max-width: 70ch; color: var(--muted); font-size: .88rem; }
+.citation { padding: .85rem; border-left: .2rem solid var(--accent); background: var(--surface); overflow-wrap: anywhere; }
+.site-footer { border-top: 1px solid var(--line); padding: 1.25rem 0 2.5rem; color: var(--muted); font-size: .82rem; }
+.site-footer p { max-width: 78ch; }
+@media (max-width: 72rem) { .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 54rem) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail-grid { grid-template-columns: 1fr; } }
+@media (max-width: 38rem) {
+  .wrap { width: min(calc(100% - 1.25rem), var(--max)); }
+  .filters { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .brand-row { align-items: flex-start; flex-direction: column; gap: .35rem; }
+  .facts div { grid-template-columns: 1fr; gap: .1rem; }
+  .detail-actions .button { width: 100%; justify-content: center; }
 }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 
+<meta http-equiv="refresh" content="0; url=https://gasyoun.github.io/ZaliznjakVideo/v/103/">
 </head>
 <body>
-
-<header class="site">
-  <div class="wrap">
-    <p class="crumbs"><a href="../../">← Все видео</a></p>
-    <div class="brand">ZalizniakVideo</div>
-    <h1>А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г</h1>
-    <div class="meta-bar"><span>Длительность: <strong>4:32</strong></span><span>Дата: <strong>не указана</strong></span><span>Тема: <strong>санскрит</strong></span><span>Стадия конвейера: <strong>transcribed</strong></span></div>
-  </div>
-</header>
-<main class="wrap">
-  <div class="player">
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/8pF86C0qoOs"
-      title="А-А-Зализняк-Начало-лекции-по-санскриту-18-декабря-2010-г"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  </div>
-  <div class="actions">
-    <a class="btn primary" href="https://youtube.com/watch?v=8pF86C0qoOs" rel="noopener noreferrer" target="_blank">Открыть на YouTube</a>
-    <a class="btn" href="https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video/8pF86C0qoOs" rel="noopener noreferrer">Карточка в BookIndex</a>
-    <a class="btn" href="../../">К каталогу</a>
-  </div>
-  
-  <div class="section">
-    <h2>Связанные сущности</h2>
-    <div class="entities"><span class="entity">А. А. Зализняк</span><span class="entity">Зализняк А. А.</span><span class="entity">начал</span><span class="entity">начался</span><span class="entity">начать</span></div>
-    <p class="note">Метки минут (▸ ММ:СС), если есть, ведут к моменту в расшифровке/KWIC в BookIndex; полный текст расшифровки здесь не публикуется.</p>
-  </div>
-  <p class="note">Постоянная ссылка на эту страницу:
-    <a href="https://gasyoun.github.io/ZalizniakVideo/video/8pF86C0qoOs/">https://gasyoun.github.io/ZalizniakVideo/video/8pF86C0qoOs/</a></p>
-</main>
-
-<footer class="site wrap">
-  <p>Каталог публичных лекций А. А. Зализняка. Данные собраны в проекте
-  <a href="https://github.com/gasyoun/BookIndex">BookIndex</a>;
-  полная корпусная оболочка (указатель, KWIC, симуляторы) —
-  <a href="https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video">видеогалерея BookIndex</a>.</p>
-  <p>Видео размещены на YouTube правообладателями/архивами; здесь — только индекс и ссылки.
-  Сборка: 2026-08-01T15:47:13Z ·
-  <a href="https://github.com/gasyoun/ZalizniakVideo">исходники</a></p>
-</footer>
-
-
+<a class="skip-link" href="#main">К основному содержанию</a>
+<main class="wrap" id="main"><h1>Запись перемещена</h1><p>Постоянная карточка этой записи теперь доступна по адресу <a href="https://gasyoun.github.io/ZaliznjakVideo/v/103/">https://gasyoun.github.io/ZaliznjakVideo/v/103/</a>.</p></main>
 
 </body>
 </html>

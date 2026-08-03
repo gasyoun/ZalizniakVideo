@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build the static ZalizniakVideo scholarly gallery.
+"""Build the static ZaliznjakVideo scholarly gallery.
 
 The preferred input is BookIndex ``data/video_catalog_public.json``.  Until
 that export is available, the checked-in v1 catalog is accepted as a migration
@@ -18,6 +18,7 @@ import shutil
 import sys
 import urllib.error
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -25,12 +26,10 @@ sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PUBLIC_CATALOG = (
-    ROOT.parent / "BookIndex-zv-scholarly" / "data" / "video_catalog_public.json"
-)
+DEFAULT_PUBLIC_CATALOG = ROOT.parent / "BookIndex" / "data" / "video_catalog_public.json"
 FALLBACK_CATALOG = ROOT / "data" / "catalog.json"
 SITE_BASE = os.environ.get(
-    "SITE_BASE", "https://gasyoun.github.io/ZalizniakVideo"
+    "SITE_BASE", "https://gasyoun.github.io/ZaliznjakVideo"
 ).rstrip("/")
 BOOKINDEX_VIDEO = "https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video"
 
@@ -46,6 +45,7 @@ CSS = r"""
   --line: #cfc6b8;
   --accent: #7a2f2b;
   --accent-strong: #5f211e;
+  --action: #712621;
   --focus: #7a2f2b;
   --player: #171512;
   --radius-sm: .25rem;
@@ -65,6 +65,7 @@ CSS = r"""
     --line: #4a443c;
     --accent: #d58a82;
     --accent-strong: #efaaa2;
+    --action: #934640;
     --focus: #efaaa2;
     --player: #0b0a09;
   }
@@ -107,10 +108,11 @@ main { padding-block: 1.25rem 3rem; }
   padding: .8rem; margin-bottom: .7rem; border: 1px solid var(--line);
   border-radius: var(--radius-lg); background: var(--surface);
 }
+.field { min-width: 0; }
 .field label { display: block; margin-bottom: .18rem; color: var(--muted); font-size: .76rem; font-weight: 600; }
 input, select, button { font: inherit; }
 input[type="search"], select {
-  width: 100%; min-height: 2.75rem; padding: .55rem .65rem;
+  width: 100%; max-width: 100%; min-width: 0; min-height: 2.75rem; padding: .55rem .65rem;
   color: var(--ink); background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-sm);
 }
 .filter-actions { display: flex; align-items: end; }
@@ -126,7 +128,7 @@ input[type="search"], select {
 .thumb { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--player); border-radius: var(--radius-md); }
 .card-link:hover .thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
 .card-kicker { display: flex; justify-content: space-between; gap: .7rem; margin-top: .55rem; font-size: .75rem; color: var(--muted); }
-.card h2 { margin: .25rem 0 .3rem; font-size: 1.12rem; line-height: 1.25; }
+.card h2 { margin: .25rem 0 .3rem; font-size: 1.12rem; line-height: 1.25; overflow-wrap: anywhere; }
 .card-meta, .card-tags, .contributors { margin: .18rem 0 0; color: var(--muted); font-size: .82rem; }
 .card-tags { color: var(--ink); }
 .empty { display: none; padding: 2rem 1rem; border: 1px dashed var(--line); border-radius: var(--radius-md); text-align: center; color: var(--muted); }
@@ -142,8 +144,8 @@ input[type="search"], select {
 .watch-fallback { margin: .55rem 0 0; font-size: .86rem; }
 .detail-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1rem 0 1.6rem; }
 .button { display: inline-flex; align-items: center; text-decoration: none; }
-.button.primary { border-color: var(--accent); background: var(--accent); color: #fff; }
-.button.primary:hover { background: var(--accent-strong); color: #fff; }
+.button.primary { border-color: var(--action); background: var(--action); color: #fff; }
+.button.primary:hover { filter: brightness(.9); color: #fff; }
 .section { margin-top: 1.7rem; }
 .facts { margin: 0; }
 .facts div { display: grid; grid-template-columns: minmax(7rem, .7fr) 1.5fr; gap: .7rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
@@ -193,9 +195,10 @@ INDEX_JS = r"""
     let shown = 0;
     cards.forEach(card => {
       const searchOk = !values.q || norm(card.dataset.search).includes(values.q);
-      const filterOk = ['topic', 'type', 'series', 'year', 'transcript'].every(key =>
-        !values[key] || norm(card.dataset[key]) === values[key]
-      );
+      const filterOk = ['topic', 'type', 'series', 'year', 'transcript'].every(key => {
+        if (!values[key]) return true;
+        return norm(card.dataset[key]).split('|').includes(values[key]);
+      });
       const visible = searchOk && filterOk;
       card.classList.toggle('hidden', !visible);
       if (visible) shown += 1;
@@ -225,11 +228,13 @@ PLAYER_JS = r"""
     frame.allowFullscreen = true;
     frame.referrerPolicy = 'strict-origin-when-cross-origin';
     button.replaceWith(frame);
+    frame.tabIndex = -1;
+    frame.focus();
   });
   document.querySelectorAll('[data-copy]').forEach(function (copy) {
     copy.addEventListener('click', async function () {
       const value = document.getElementById(copy.dataset.copy).textContent.trim();
-      try { await navigator.clipboard.writeText(value); copy.textContent = 'Скопировано'; }
+      try { await navigator.clipboard.writeText(value); copy.textContent = 'Скопировано'; document.getElementById('copy-status').textContent = 'Текст скопирован'; }
       catch (_) { window.prompt('Скопируйте текст', value); }
     });
   });
@@ -295,7 +300,12 @@ def fmt_duration(value: Any) -> str:
 
 
 def option_values(records: Iterable[dict], key: str) -> list[str]:
-    return sorted({str(r.get(key)) for r in records if r.get(key)}, key=str.casefold)
+    values = set()
+    for record in records:
+        for value in list_value(record.get(key)):
+            if value:
+                values.add(str(value))
+    return sorted(values, key=str.casefold)
 
 
 def contributor_names(value: Any) -> list[str]:
@@ -359,22 +369,24 @@ def normalize_records(payload: Any) -> tuple[list[dict], dict]:
         rid = youtube_id(first(raw, "youtube_id", "id", "url", "youtube_url") or first(source, "youtube_id", "url"))
         if not rid:
             continue
-        title = str(first(raw, "human_title", "title", "display_title", default=rid)).strip()
+        title = str(first(raw, "title_display", "human_title", "title", "display_title", default=rid)).strip()
         accession_raw = first(raw, "accession", "record_accession", "catalog_number")
         accession = str(accession_raw).zfill(3) if str(accession_raw or "").isdigit() else None
         duration = parse_duration(first(raw, "duration", "duration_seconds", "duration_sec"))
         date_recorded = first(raw, "date_recorded", "recorded_date")
         upload_date = first(raw, "upload_date", "date_uploaded", "date")
-        topic = first(raw, "topic", "theme")
-        kind = first(raw, "type", "record_type", "genre", default=infer_type(title))
-        series = first(raw, "series", "collection")
+        topics = [str(value) for value in list_value(first(raw, "topics", "topic", "theme")) if value]
+        topic = topics[0] if topics else None
+        kind = first(raw, "type", "record_type", "genre")
+        series = first(raw, "purpose", "series", "collection")
         transcript = transcript_data(raw)
-        url = first(raw, "url", "youtube_url", default=f"https://www.youtube.com/watch?v={rid}")
+        url = first(raw, "watch_url", "url", "youtube_url", default=f"https://www.youtube.com/watch?v={rid}")
         prepared.append({
             "_source": raw,
             "accession": accession,
             "id": rid,
             "title": title,
+            "title_source": first(raw, "title_source", default=title),
             "url": url,
             "date": first(raw, "date", default=upload_date),
             "date_recorded": date_recorded,
@@ -382,8 +394,11 @@ def normalize_records(payload: Any) -> tuple[list[dict], dict]:
             "year": str(first(raw, "year", default=(str(date_recorded or upload_date)[:4] if date_recorded or upload_date else ""))),
             "duration": duration,
             "topic": topic,
+            "topics": topics,
             "type": kind,
             "series": series,
+            "purpose": raw.get("purpose"),
+            "last_verified_at": raw.get("last_verified_at"),
             "contributors": contributor_names(first(raw, "contributors", "creators", "participants")),
             "transcript": transcript,
             "bibliography": list_value(first(raw, "bibliography", "citations")),
@@ -447,7 +462,7 @@ def page_shell(*, title: str, description: str, canonical: str, body: str, og_ty
 def footer_html() -> str:
     return f'''<footer class="site-footer"><div class="wrap">
 <p>Научно-редакционный указатель публичных видеозаписей. Видео хранятся у их правообладателей. Каталог связывает записи, проверяемые метаданные и материалы <a href="{esc(BOOKINDEX_VIDEO)}">BookIndex</a>.</p>
-<p><a href="data/catalog.json">JSON v1</a> · <a href="data/catalog.v2.json">JSON v2</a> · <a href="https://github.com/gasyoun/ZalizniakVideo">Исходный код</a></p>
+<p><a href="data/catalog.json">JSON v1</a> · <a href="data/catalog.v2.json">JSON v2</a> · <a href="https://github.com/gasyoun/ZaliznjakVideo">Исходный код</a></p>
 </div></footer>'''
 
 
@@ -460,10 +475,10 @@ def render_index(records: list[dict]) -> str:
     cards = []
     for record in records:
         date = record.get("date_recorded") or record.get("upload_date") or "дата неизвестна"
-        tags = " · ".join(visible(v) for v in (record.get("type"), record.get("topic")) if v)
+        tags = " · ".join(visible(v) for v in ([record.get("type") or "тип не указан"] + record.get("topics", [])) if v)
         contributors = ", ".join(visible(v) for v in record["contributors"])
         search = " ".join(str(v or "") for v in (record["accession"], record["id"], record["title"], contributors, record.get("topic"), record.get("series")))
-        cards.append(f'''<li class="card" data-card data-search="{esc(search)}" data-topic="{esc(record.get('topic') or '')}" data-type="{esc(record.get('type') or '')}" data-series="{esc(record.get('series') or '')}" data-year="{esc(record.get('year') or '')}" data-transcript="{esc(record['transcript']['bucket'])}">
+        cards.append(f'''<li class="card" data-card data-search="{esc(search)}" data-topic="{esc('|'.join(record.get('topics', [])))}" data-type="{esc(record.get('type') or '')}" data-series="{esc(record.get('series') or '')}" data-year="{esc(record.get('year') or '')}" data-transcript="{esc(record['transcript']['bucket'])}">
 <a class="card-link" href="{esc(record['path'])}">
 <img class="thumb" src="assets/thumbs/{record['accession']}.jpg" alt="" width="480" height="270" loading="lazy" decoding="async">
 <div class="card-kicker"><span class="accession">№ {record['accession']}</span><span>{esc(fmt_duration(record['duration']))}</span></div>
@@ -475,7 +490,7 @@ def render_index(records: list[dict]) -> str:
 </li>''')
     filters = [
         '<div class="field"><label for="q">Поиск по архиву</label><input id="q" name="q" data-filter type="search" autocomplete="off" placeholder="Название, участник, номер"></div>',
-        filter_select("topic", "Тема", option_values(records, "topic"), "Все темы"),
+        filter_select("topic", "Тема", option_values(records, "topics"), "Все темы"),
         filter_select("type", "Тип", option_values(records, "type"), "Все типы"),
         filter_select("series", "Серия", option_values(records, "series"), "Все серии"),
         filter_select("year", "Год", option_values(records, "year"), "Все годы"),
@@ -483,7 +498,7 @@ def render_index(records: list[dict]) -> str:
         '<div class="filter-actions"><button class="reset" id="reset" type="button">Сбросить</button></div>',
     ]
     body = f'''<header class="masthead"><div class="wrap">
-<div class="brand-row"><div class="brand">ZalizniakVideo · Архив видеозаписей</div><div class="accession">Редакционный каталог</div></div>
+<div class="brand-row"><div class="brand">ZaliznjakVideo · Архив видеозаписей</div><div class="accession">Редакционный каталог</div></div>
 <h1>А. А. Зализняк: видеозаписи и материалы</h1>
 <p class="lede">Публичный научно-редакционный архив для читателей, исследователей и студентов. Каждая запись имеет постоянный номер, библиографию и сведения о происхождении, когда они подтверждены источником.</p>
 <div class="archive-facts"><span><strong>{len(records)}</strong> записей</span><span>Постоянная нумерация</span><span>Локальные обложки</span></div>
@@ -517,7 +532,7 @@ def render_video(record: dict) -> str:
     embed_url = f"https://www.youtube-nocookie.com/embed/{rid}"
     date = record.get("date_recorded") or record.get("upload_date")
     description = visible(record.get("description") or f"Архивная карточка видеозаписи «{title}»: проверяемые метаданные, происхождение и связанные материалы.")
-    citation = f"{visible(title)}. Видеозапись. ZalizniakVideo, № {accession}. {canonical}"
+    citation = f"{visible(title)}. Видеозапись. ZaliznjakVideo, № {accession}. {canonical}"
     facts = [
         ("Номер", f"№ {accession}"),
         ("Тип", record.get("type")),
@@ -527,6 +542,7 @@ def render_video(record: dict) -> str:
         ("Дата публикации", record.get("upload_date")),
         ("Длительность", fmt_duration(record.get("duration"))),
         ("Участники", ", ".join(record["contributors"])),
+        ("Последняя проверка", record.get("last_verified_at")),
     ]
     fact_html = "".join(f"<div><dt>{esc(label)}</dt><dd>{esc(visible(value))}</dd></div>" for label, value in facts if value)
     transcript = record["transcript"]
@@ -554,7 +570,7 @@ def render_video(record: dict) -> str:
         json_ld["uploadDate"] = record["upload_date"]
     body = f'''<header class="masthead"><div class="wrap">
 <p class="breadcrumbs"><a href="../../">Все записи</a> / № {accession}</p>
-<div class="brand">ZalizniakVideo · Архивная карточка</div>
+<div class="brand">ZaliznjakVideo · Архивная карточка</div>
 <h1>{esc(visible(title))}</h1>
 <div class="archive-facts"><span class="accession">№ {accession}</span>{f'<span>{esc(visible(date))}</span>' if date else '<span>Дата не установлена</span>'}<span>{esc(fmt_duration(record['duration']))}</span></div>
 </div></header>
@@ -566,7 +582,7 @@ def render_video(record: dict) -> str:
 </div>
 <p class="watch-fallback">Плеер загружается только по нажатию. <a href="{esc(youtube_url)}" rel="noopener noreferrer">Смотреть на YouTube</a>.</p>
 <noscript><p><a class="button primary" href="{esc(youtube_url)}">Смотреть видео на YouTube</a></p></noscript>
-<div class="detail-actions"><a class="button primary" href="{esc(youtube_url)}" rel="noopener noreferrer">Открыть на YouTube</a><button class="button" type="button" data-copy="citation">Копировать описание</button><button class="button" type="button" data-copy="permalink">Копировать ссылку</button></div>
+<div class="detail-actions"><a class="button primary" href="{esc(youtube_url)}" rel="noopener noreferrer">Открыть на YouTube</a><button class="button" type="button" data-copy="citation">Копировать описание</button><button class="button" type="button" data-copy="permalink">Копировать ссылку</button></div><p class="note" id="copy-status" role="status" aria-live="polite"></p>
 <section class="section" aria-labelledby="bibliography"><h2 id="bibliography">Библиография</h2>{render_list(record['bibliography'])}</section>
 <section class="section" aria-labelledby="provenance"><h2 id="provenance">Происхождение записи</h2>{render_list(record['provenance'])}</section>
 <section class="section" aria-labelledby="transcript"><h2 id="transcript">Расшифровка</h2>{transcript_html}</section>
@@ -584,8 +600,9 @@ def render_alias(record: dict) -> str:
     return page_shell(title="Запись перемещена", description="Старая ссылка на архивную видеозапись.", canonical=canonical, body=body, robots="noindex, follow", extra_head=f'<meta http-equiv="refresh" content="0; url={esc(canonical)}">')
 
 
-def v1_export(records: list[dict], source_meta: dict) -> dict:
-    source_videos = source_meta.get("videos") if isinstance(source_meta, dict) else None
+def v1_export(records: list[dict], source_meta: dict, legacy_meta: dict | None = None) -> dict:
+    legacy_meta = legacy_meta or source_meta
+    source_videos = legacy_meta.get("videos") if isinstance(legacy_meta, dict) else None
     source_by_id = {str(v.get("id")): v for v in source_videos or [] if isinstance(v, dict)}
     videos = []
     for record in records:
@@ -599,7 +616,7 @@ def v1_export(records: list[dict], source_meta: dict) -> dict:
     return {
         "schema": "zalizniak-video-catalog/1", "site": SITE_BASE,
         "built_at": source_meta.get("built_at") or source_meta.get("generated_at") or os.environ.get("BUILD_TIMESTAMP", "source-undated"),
-        "stats": {"unique_videos": len(records), "raw_catalog_rows": source_meta.get("stats", {}).get("raw_catalog_rows", len(records)), "pipeline_videos": source_meta.get("stats", {}).get("pipeline_videos", len(records)), "total_hours": round(sum(r["duration"] for r in records) / 3600, 2), "collisions": sum(bool(r["collision"]) for r in records)},
+        "stats": {"unique_videos": len(records), "raw_catalog_rows": source_meta.get("stats", {}).get("raw_catalog_rows", source_meta.get("stats", {}).get("source_rows", len(records))), "pipeline_videos": source_meta.get("stats", {}).get("pipeline_videos", source_meta.get("stats", {}).get("videos", len(records))), "total_hours": round(sum(r["duration"] for r in records) / 3600, 2), "collisions": sum(bool(r["collision"]) for r in records)},
         "collisions": source_meta.get("collisions", []), "videos": videos,
     }
 
@@ -610,28 +627,34 @@ def v2_export(records: list[dict], source_meta: dict) -> dict:
         "source_schema": source_meta.get("schema") if isinstance(source_meta, dict) else None,
         "built_at": source_meta.get("generated_at") or source_meta.get("built_at") or os.environ.get("BUILD_TIMESTAMP", "source-undated"),
         "stats": {"records": len(records), "total_hours": round(sum(r["duration"] for r in records) / 3600, 2)},
-        "videos": [{k: r.get(k) for k in ("accession", "id", "title", "url", "path", "legacy_path", "date_recorded", "upload_date", "year", "duration", "topic", "type", "series", "contributors", "transcript", "bibliography", "provenance", "related_entities")} for r in records],
+        "videos": [{k: r.get(k) for k in ("accession", "id", "title_source", "title", "url", "path", "legacy_path", "date_recorded", "upload_date", "year", "duration", "topics", "topic", "type", "purpose", "series", "contributors", "transcript", "bibliography", "provenance", "related_entities", "last_verified_at")} for r in records],
     }
 
 
 def fetch_thumbnails(records: list[dict], thumb_root: Path) -> None:
     thumb_root.mkdir(parents=True, exist_ok=True)
-    for index, record in enumerate(records, 1):
+    def fetch_one(record: dict) -> tuple[str, bool]:
         target = thumb_root / f"{record['accession']}.jpg"
         if target.is_file() and target.stat().st_size > 1024:
-            continue
+            return record["accession"], True
         urls = [f"https://i.ytimg.com/vi/{record['id']}/hqdefault.jpg", f"https://i.ytimg.com/vi/{record['id']}/mqdefault.jpg"]
         for url in urls:
             try:
-                request = urllib.request.Request(url, headers={"User-Agent": "ZalizniakVideo thumbnail cache/2"})
+                request = urllib.request.Request(url, headers={"User-Agent": "ZaliznjakVideo thumbnail cache/2"})
                 with urllib.request.urlopen(request, timeout=20) as response:
                     data = response.read()
                 if len(data) > 1024 and data[:2] == b"\xff\xd8":
                     target.write_bytes(data)
-                    print(f"thumbnail {index}/{len(records)}: {record['accession']}")
-                    break
+                    return record["accession"], True
             except (OSError, urllib.error.URLError):
                 continue
+        return record["accession"], False
+
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        futures = [pool.submit(fetch_one, record) for record in records]
+        for index, future in enumerate(as_completed(futures), 1):
+            accession, success = future.result()
+            print(f"thumbnail {index}/{len(records)}: {accession} {'ok' if success else 'failed'}")
 
 
 def validate(records: list[dict], thumb_root: Path, allow_missing: bool = False) -> None:
@@ -646,12 +669,13 @@ def validate(records: list[dict], thumb_root: Path, allow_missing: bool = False)
         raise ValueError(f"missing local thumbnails ({len(missing)}): {', '.join(missing[:12])}")
 
 
-def write_site(records: list[dict], source_meta: dict, root: Path) -> None:
+def write_site(records: list[dict], source_meta: dict, root: Path, legacy_meta: dict | None = None) -> None:
     (root / "data").mkdir(parents=True, exist_ok=True)
     (root / "index.html").write_text(render_index(records), encoding="utf-8")
-    (root / "data" / "catalog.json").write_text(json.dumps(v1_export(records, source_meta), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    legacy_export = v1_export(records, source_meta, legacy_meta)
+    (root / "data" / "catalog.json").write_text(json.dumps(legacy_export, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (root / "data" / "catalog.v2.json").write_text(json.dumps(v2_export(records, source_meta), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (root / "data" / "stats.json").write_text(json.dumps(v1_export(records, source_meta)["stats"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (root / "data" / "stats.json").write_text(json.dumps(legacy_export["stats"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     for name in ("v", "video"):
         output = root / name
         if output.exists():
@@ -681,18 +705,25 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    input_path = args.catalog or (DEFAULT_PUBLIC_CATALOG if DEFAULT_PUBLIC_CATALOG.is_file() else FALLBACK_CATALOG)
+    configured_catalog = os.environ.get("BOOKINDEX_VIDEO_CATALOG")
+    input_path = args.catalog or (Path(configured_catalog) if configured_catalog else None)
+    input_path = input_path or (DEFAULT_PUBLIC_CATALOG if DEFAULT_PUBLIC_CATALOG.is_file() else FALLBACK_CATALOG)
     if not input_path.is_file():
         print(f"ERROR: missing catalog: {input_path}", file=sys.stderr)
         return 1
     try:
         payload = json.loads(input_path.read_text(encoding="utf-8"))
+        legacy_meta = None
+        if input_path.resolve() != FALLBACK_CATALOG.resolve() and FALLBACK_CATALOG.is_file():
+            candidate = json.loads(FALLBACK_CATALOG.read_text(encoding="utf-8"))
+            if candidate.get("schema") == "zalizniak-video-catalog/1":
+                legacy_meta = candidate
         records, source_meta = normalize_records(payload)
         thumb_root = args.output / "assets" / "thumbs"
         if args.fetch_thumbnails:
             fetch_thumbnails(records, thumb_root)
         validate(records, thumb_root, args.allow_missing_thumbnails)
-        write_site(records, source_meta, args.output)
+        write_site(records, source_meta, args.output, legacy_meta)
     except (OSError, ValueError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1

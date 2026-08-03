@@ -10,42 +10,49 @@ import build_site
 
 def fixture_payload():
     return {
-        "schema": "bookindex-video-public/1",
-        "generated_at": "2026-08-03T00:00:00Z",
-        "records": [
+        "schema": "video_catalog_public/1",
+        "version": 1,
+        "built_at": "2026-08-03T00:00:00Z",
+        "stats": {"source_rows": 1, "videos": 1, "unique_youtube_ids": 1, "unresolved_records": 0, "related_resources": 0},
+        "videos": [
             {
                 "accession": "017",
                 "youtube_id": "abcdefghijk",
-                "human_title": "Лекция — проверка",
+                "title_source": "Лекция — проверка",
+                "title_display": "Лекция — проверка",
+                "watch_url": "https://youtu.be/abcdefghijk",
                 "duration_seconds": 3723,
-                "date_recorded": "1997-10-21",
-                "upload_date": "2020-04-02",
-                "topic": "береста",
+                "topics": ["береста", "диалектология"],
                 "type": "лекция",
-                "series": "Новгородские чтения",
-                "contributors": [{"name": "А. А. Зализняк", "role": "лектор"}],
-                "transcript": {"status": "verified", "verified": True, "url": "https://example.test/transcript"},
-                "bibliography": ["Описание в каталоге"],
-                "provenance": [{"label": "Архивная копия"}],
+                "purpose": "Новгородские чтения",
+                "transcript_status": "automatic",
+                "last_verified_at": "2026-08-03",
                 "related_entities": [{"head": "Новгород"}],
             }
         ],
+        "unresolved_records": [],
+        "related_resources": [],
     }
 
 
 class NormalizeTests(unittest.TestCase):
     def test_public_contract_maps_to_frozen_accession(self):
         records, meta = build_site.normalize_records(fixture_payload())
-        self.assertEqual(meta["schema"], "bookindex-video-public/1")
+        self.assertEqual(meta["schema"], "video_catalog_public/1")
         self.assertEqual(records[0]["accession"], "017")
         self.assertEqual(records[0]["path"], "v/017/")
         self.assertEqual(records[0]["legacy_path"], "video/abcdefghijk/")
         self.assertEqual(records[0]["duration"], 3723)
+        self.assertEqual(records[0]["title"], "Лекция — проверка")
+        self.assertEqual(records[0]["url"], "https://youtu.be/abcdefghijk")
+        self.assertEqual(records[0]["topics"], ["береста", "диалектология"])
+        self.assertEqual(records[0]["series"], "Новгородские чтения")
+        self.assertEqual(records[0]["last_verified_at"], "2026-08-03")
 
     def test_duplicate_accessions_fail(self):
         payload = fixture_payload()
-        duplicate = dict(payload["records"][0], youtube_id="lmnopqrstuv")
-        payload["records"].append(duplicate)
+        duplicate = dict(payload["videos"][0], youtube_id="lmnopqrstuv")
+        payload["videos"].append(duplicate)
         with self.assertRaisesRegex(ValueError, "duplicate accession"):
             build_site.normalize_records(payload)
 
@@ -71,8 +78,8 @@ class RenderTests(unittest.TestCase):
         self.assertIn('youtube-nocookie.com/embed/abcdefghijk', page)
         self.assertIn('<meta property="og:type" content="video.other">', page)
         self.assertIn('"@type":"VideoObject"', page)
-        self.assertIn('"dateRecorded":"1997-10-21"', page)
-        self.assertIn('"uploadDate":"2020-04-02"', page)
+        self.assertNotIn('"dateRecorded"', page)
+        self.assertNotIn('"uploadDate"', page)
         self.assertNotIn("—", page)
 
     def test_index_has_all_url_synced_filters(self):
@@ -106,6 +113,10 @@ class BuildTests(unittest.TestCase):
             self.assertTrue((root / "v" / "017" / "index.html").is_file())
             self.assertTrue((root / "video" / "abcdefghijk" / "index.html").is_file())
             self.assertEqual(json.loads((root / "data" / "catalog.v2.json").read_text(encoding="utf-8"))["videos"][0]["path"], "v/017/")
+
+    def test_default_catalog_path_is_not_a_worktree_name(self):
+        self.assertEqual(build_site.DEFAULT_PUBLIC_CATALOG.parent.parent.name, "BookIndex")
+        self.assertNotIn("scholarly", str(build_site.DEFAULT_PUBLIC_CATALOG))
 
 
 if __name__ == "__main__":
