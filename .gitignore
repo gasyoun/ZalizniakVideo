@@ -8,3 +8,6 @@
 __pycache__/
 .DS_Store
 Thumbs.db
+
+# Temporary local cache retained while remapping pre-v2 thumbnail accessions
+assets/thumbs-fallback-cache/

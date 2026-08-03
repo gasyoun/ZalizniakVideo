@@ -1,752 +1,733 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build a static videos-only site from BookIndex catalog + pipeline.
+"""Build the static ZalizniakVideo scholarly gallery.
 
-Reads (sibling clone layout, override with env):
-  BOOKINDEX_ROOT/app_data.json          → video_catalog
-  BOOKINDEX_ROOT/data/video_pipeline.json → stages, themes
-
-Writes into repo root:
-  index.html
-  video/<id>/index.html
-  data/catalog.json
-  data/stats.json
-  sitemap.xml
-  .nojekyll
-
-One page per unique YouTube id. Multi-title collisions keep all titles on the
-survivor page and flag data_quality.collisions.
+The preferred input is BookIndex ``data/video_catalog_public.json``.  Until
+that export is available, the checked-in v1 catalog is accepted as a migration
+fixture.  The normal build is offline and requires every local thumbnail.
+Pass ``--fetch-thumbnails`` explicitly to refresh the cache from YouTube.
 """
 from __future__ import annotations
 
+import argparse
 import html
 import json
 import os
 import re
+import shutil
 import sys
-from collections import defaultdict
-from datetime import date, datetime, timezone
+import urllib.error
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parents[1]
-BOOKINDEX = Path(
-    os.environ.get(
-        "BOOKINDEX_ROOT",
-        str(ROOT.parent / "BookIndex"),
-    )
-)
+DEFAULT_PUBLIC_CATALOG = ROOT.parent / "BookIndex" / "data" / "video_catalog_public.json"
+FALLBACK_CATALOG = ROOT / "data" / "catalog.json"
 SITE_BASE = os.environ.get(
-    "SITE_BASE",
-    "https://gasyoun.github.io/ZalizniakVideo",
+    "SITE_BASE", "https://gasyoun.github.io/ZalizniakVideo"
 ).rstrip("/")
-BOOKINDEX_VIDEO = (
-    "https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video"
-)
-BOOKINDEX_VIDEO_DETAIL = (
-    "https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video/{id}"
-)
-TODAY = date.today().isoformat()
-BUILT_AT = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+BOOKINDEX_VIDEO = "https://gasyoun.github.io/BookIndex/aaz-index.html#v4/materials/video"
 
-CSS = """
+
+CSS = r"""
 :root {
-  --bg: #f7f1e6;
-  --ink: #2a1f12;
-  --muted: #6b5640;
-  --card: #fffdf8;
-  --line: #d9c9b0;
-  --accent: #8c3a15;
-  --accent-soft: #f0e0d0;
-  --link: #6b2e10;
-  --warn: #8a4b00;
-  --ok: #2f5d3a;
-  --radius: 10px;
-  --max: 52rem;
-  --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: light dark;
+  --paper: #f4efe5;
+  --surface: #fbf8f1;
+  --surface-strong: #fffdf8;
+  --ink: #24211d;
+  --muted: #676057;
+  --line: #cfc6b8;
+  --accent: #7a2f2b;
+  --accent-strong: #5f211e;
+  --action: #712621;
+  --focus: #7a2f2b;
+  --player: #171512;
+  --radius-sm: .25rem;
+  --radius-md: .5rem;
+  --radius-lg: .75rem;
+  --max: 88rem;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: "Segoe UI", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #181715;
+    --surface: #211f1c;
+    --surface-strong: #292622;
+    --ink: #f1ece2;
+    --muted: #bbb2a5;
+    --line: #4a443c;
+    --accent: #d58a82;
+    --accent-strong: #efaaa2;
+    --action: #934640;
+    --focus: #efaaa2;
+    --player: #0b0a09;
+  }
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: var(--font);
+  background: var(--paper);
   color: var(--ink);
-  background: var(--bg);
+  font-family: var(--sans);
   line-height: 1.55;
 }
-a { color: var(--link); }
-a:hover { color: var(--accent); }
+a { color: var(--accent-strong); text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: .12em; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: .18rem solid var(--focus);
+  outline-offset: .16rem;
 }
-.wrap { max-width: var(--max); margin: 0 auto; padding: 1.25rem 1rem 3rem; }
-header.site {
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(180deg, #fffaf1, var(--bg));
-  margin-bottom: 1.25rem;
+.skip-link {
+  position: fixed; left: .75rem; top: .75rem; z-index: 20;
+  transform: translateY(-180%); padding: .7rem 1rem;
+  background: var(--surface-strong); color: var(--ink); border: 1px solid var(--line);
 }
-header.site .wrap { padding-bottom: 1rem; }
-.brand { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.02em; }
-h1 { font-size: clamp(1.45rem, 3vw, 1.9rem); margin: 0.2rem 0 0.4rem; line-height: 1.25; }
-.lede { color: var(--muted); margin: 0 0 0.75rem; max-width: 40rem; }
-.meta-bar {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 0.85rem;
-  font-size: 0.92rem; color: var(--muted);
+.skip-link:focus { transform: translateY(0); }
+.wrap { width: min(calc(100% - 2rem), var(--max)); margin-inline: auto; }
+.masthead { border-bottom: 1px solid var(--line); padding: 1.2rem 0 1.4rem; }
+.brand-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.brand { font: 600 .78rem/1 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--muted); }
+.accession { font-variant-numeric: tabular-nums; letter-spacing: .08em; color: var(--muted); }
+h1, h2 { font-family: var(--serif); font-weight: 600; letter-spacing: -.018em; text-wrap: balance; }
+h1 { max-width: 25ch; margin: .45rem 0 .35rem; font-size: clamp(1.7rem, 4vw, 3rem); line-height: 1.08; }
+h2 { margin: 0 0 .6rem; font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.2; }
+.lede { max-width: 66ch; margin: 0; color: var(--muted); text-wrap: pretty; }
+.archive-facts { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin-top: .8rem; color: var(--muted); font-size: .9rem; }
+.archive-facts strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+main { padding-block: 1.25rem 3rem; }
+.filters {
+  display: grid; grid-template-columns: minmax(13rem, 2fr) repeat(5, minmax(8rem, 1fr)); gap: .65rem;
+  padding: .8rem; margin-bottom: .7rem; border: 1px solid var(--line);
+  border-radius: var(--radius-lg); background: var(--surface);
 }
-.meta-bar strong { color: var(--ink); font-weight: 600; }
-.controls {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.65rem;
-  margin: 1rem 0 0.75rem;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: color-mix(in srgb, var(--bg) 92%, white);
-  padding: 0.65rem 0;
-  border-bottom: 1px solid var(--line);
-}
-@media (min-width: 640px) {
-  .controls { grid-template-columns: 1.4fr 0.8fr 0.8fr; align-items: end; }
-}
-label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 0.2rem; }
+.field { min-width: 0; }
+.field label { display: block; margin-bottom: .18rem; color: var(--muted); font-size: .76rem; font-weight: 600; }
+input, select, button { font: inherit; }
 input[type="search"], select {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--card);
-  color: var(--ink);
-  font: inherit;
+  width: 100%; max-width: 100%; min-width: 0; min-height: 2.75rem; padding: .55rem .65rem;
+  color: var(--ink); background: var(--surface-strong); border: 1px solid var(--line); border-radius: var(--radius-sm);
 }
-#result-count[role="status"] { font-size: 0.9rem; color: var(--muted); min-height: 1.3em; }
-.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 0.75rem 0.9rem;
-  display: grid;
-  gap: 0.25rem;
+.filter-actions { display: flex; align-items: end; }
+.reset, .button {
+  min-height: 2.75rem; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: .55rem .8rem; background: var(--surface-strong); color: var(--ink); cursor: pointer;
 }
-.card a.title {
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--ink);
-  font-size: 1.02rem;
-}
-.card a.title:hover { color: var(--accent); text-decoration: underline; }
-.card .row { font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.35rem 0.75rem; }
-.chip {
-  display: inline-block;
-  font-size: 0.75rem;
-  padding: 0.12rem 0.45rem;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line));
-}
-.chip.warn { background: #fff1d6; color: var(--warn); }
-.empty {
-  display: none;
-  padding: 1.25rem;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-  color: var(--muted);
-  background: var(--card);
-}
+.reset:hover, .button:hover { border-color: var(--accent); color: var(--accent-strong); }
+.results { min-height: 1.5rem; margin: .55rem 0 .75rem; color: var(--muted); font-size: .9rem; }
+.gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.card { min-width: 0; background: var(--surface); border-bottom: 1px solid var(--line); padding-bottom: 1rem; }
+.card-link { display: block; color: inherit; text-decoration: none; }
+.thumb { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--player); border-radius: var(--radius-md); }
+.card-link:hover .thumb { outline: 2px solid var(--accent); outline-offset: 2px; }
+.card-kicker { display: flex; justify-content: space-between; gap: .7rem; margin-top: .55rem; font-size: .75rem; color: var(--muted); }
+.card h2 { margin: .25rem 0 .3rem; font-size: 1.12rem; line-height: 1.25; overflow-wrap: anywhere; }
+.card-meta, .card-tags, .contributors { margin: .18rem 0 0; color: var(--muted); font-size: .82rem; }
+.card-tags { color: var(--ink); }
+.empty { display: none; padding: 2rem 1rem; border: 1px dashed var(--line); border-radius: var(--radius-md); text-align: center; color: var(--muted); }
 .empty.show { display: block; }
-.player {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #1a120a;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  margin: 1rem 0;
-}
-.player iframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
-}
-.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 1rem; }
-.btn {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  padding: 0.5rem 0.85rem;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--ink);
-  text-decoration: none;
-  font-size: 0.92rem;
-}
-.btn.primary {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-.btn.primary:hover { filter: brightness(1.05); color: #fff; }
-.section { margin: 1.25rem 0; }
-.section h2 { font-size: 1.1rem; margin: 0 0 0.5rem; }
-.entities { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.entity {
-  font-size: 0.8rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 6px;
-  background: #efe6d7;
-  border: 1px solid var(--line);
-}
-.entity .t { color: var(--muted); margin-left: 0.25rem; font-variant-numeric: tabular-nums; }
-.crumbs { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
-.crumbs a { color: var(--muted); }
-.note {
-  font-size: 0.88rem;
-  color: var(--muted);
-  border-left: 3px solid var(--line);
-  padding: 0.35rem 0 0.35rem 0.75rem;
-  margin: 0.75rem 0;
-}
-footer.site {
-  margin-top: 2.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-footer.site a { color: var(--muted); }
 .hidden { display: none !important; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+.breadcrumbs { margin: 0 0 .6rem; font-size: .86rem; color: var(--muted); }
+.detail-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(16rem, .85fr); gap: 2rem; align-items: start; }
+.player-shell { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: var(--radius-lg); background: var(--player); }
+.player-button { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: var(--player); color: white; }
+.player-button img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: .75; }
+.play-label { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); min-height: 2.75rem; display: inline-flex; align-items: center; padding: .65rem 1rem; border-radius: var(--radius-sm); background: rgba(20,18,15,.9); color: #fff; font-weight: 600; }
+.player-shell iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.watch-fallback { margin: .55rem 0 0; font-size: .86rem; }
+.detail-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1rem 0 1.6rem; }
+.button { display: inline-flex; align-items: center; text-decoration: none; }
+.button.primary { border-color: var(--action); background: var(--action); color: #fff; }
+.button.primary:hover { filter: brightness(.9); color: #fff; }
+.section { margin-top: 1.7rem; }
+.facts { margin: 0; }
+.facts div { display: grid; grid-template-columns: minmax(7rem, .7fr) 1.5fr; gap: .7rem; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; overflow-wrap: anywhere; }
+.entity-list { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0; list-style: none; }
+.entity-list li { padding: .3rem .5rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); font-size: .83rem; }
+.note { max-width: 70ch; color: var(--muted); font-size: .88rem; }
+.citation { padding: .85rem; border-left: .2rem solid var(--accent); background: var(--surface); overflow-wrap: anywhere; }
+.site-footer { border-top: 1px solid var(--line); padding: 1.25rem 0 2.5rem; color: var(--muted); font-size: .82rem; }
+.site-footer p { max-width: 78ch; }
+@media (max-width: 72rem) { .filters { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 54rem) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } .detail-grid { grid-template-columns: 1fr; } }
+@media (max-width: 38rem) {
+  .wrap { width: min(calc(100% - 1.25rem), var(--max)); }
+  .filters { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr; }
+  .brand-row { align-items: flex-start; flex-direction: column; gap: .35rem; }
+  .facts div { grid-template-columns: 1fr; gap: .1rem; }
+  .detail-actions .button { width: 100%; justify-content: center; }
 }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 """
 
-INDEX_JS = """
+
+INDEX_JS = r"""
 (function () {
-  const list = document.getElementById('video-list');
-  const cards = Array.from(list.querySelectorAll('[data-card]'));
-  const q = document.getElementById('q');
-  const theme = document.getElementById('theme');
-  const sort = document.getElementById('sort');
+  const cards = Array.from(document.querySelectorAll('[data-card]'));
+  const controls = Array.from(document.querySelectorAll('[data-filter]'));
   const count = document.getElementById('result-count');
   const empty = document.getElementById('empty');
+  const reset = document.getElementById('reset');
+  const norm = value => (value || '').toLocaleLowerCase('ru').replace(/ё/g, 'е');
 
-  function norm(s) { return (s || '').toLowerCase().replace(/ё/g, 'е'); }
-
-  function apply() {
-    const query = norm(q.value.trim());
-    const th = theme.value;
-    let visible = cards.slice();
-
-    visible.forEach(function (el) {
-      const hay = el.getAttribute('data-search') || '';
-      const elTheme = el.getAttribute('data-theme') || '';
-      const okQ = !query || hay.indexOf(query) !== -1;
-      const okT = !th || elTheme === th;
-      el.classList.toggle('hidden', !(okQ && okT));
-    });
-
-    visible = cards.filter(function (el) { return !el.classList.contains('hidden'); });
-
-    const mode = sort.value;
-    visible.sort(function (a, b) {
-      if (mode === 'duration-desc') {
-        return (Number(b.dataset.duration) || 0) - (Number(a.dataset.duration) || 0);
-      }
-      if (mode === 'duration-asc') {
-        return (Number(a.dataset.duration) || 0) - (Number(b.dataset.duration) || 0);
-      }
-      if (mode === 'date-desc') {
-        return (b.dataset.date || '').localeCompare(a.dataset.date || '');
-      }
-      if (mode === 'date-asc') {
-        return (a.dataset.date || '').localeCompare(b.dataset.date || '');
-      }
-      return (a.dataset.title || '').localeCompare(b.dataset.title || '', 'ru');
-    });
-    visible.forEach(function (el) { list.appendChild(el); });
-
-    count.textContent = 'Показано: ' + visible.length + ' из ' + cards.length;
-    empty.classList.toggle('show', visible.length === 0);
+  function readUrl() {
+    const params = new URLSearchParams(location.search);
+    controls.forEach(el => { el.value = params.get(el.name) || ''; });
   }
-
-  q.addEventListener('input', apply);
-  theme.addEventListener('change', apply);
-  sort.addEventListener('change', apply);
-  apply();
+  function writeUrl() {
+    const params = new URLSearchParams();
+    controls.forEach(el => { if (el.value) params.set(el.name, el.value); });
+    const query = params.toString();
+    history.replaceState(null, '', location.pathname + (query ? '?' + query : '') + location.hash);
+  }
+  function apply(updateUrl) {
+    const values = Object.fromEntries(controls.map(el => [el.name, norm(el.value.trim())]));
+    let shown = 0;
+    cards.forEach(card => {
+      const searchOk = !values.q || norm(card.dataset.search).includes(values.q);
+      const filterOk = ['topic', 'type', 'series', 'year', 'transcript'].every(key => {
+        if (!values[key]) return true;
+        return norm(card.dataset[key]).split('|').includes(values[key]);
+      });
+      const visible = searchOk && filterOk;
+      card.classList.toggle('hidden', !visible);
+      if (visible) shown += 1;
+    });
+    count.textContent = 'Показано записей: ' + shown + ' из ' + cards.length;
+    empty.classList.toggle('show', shown === 0);
+    if (updateUrl) writeUrl();
+  }
+  controls.forEach(el => el.addEventListener(el.type === 'search' ? 'input' : 'change', () => apply(true)));
+  reset.addEventListener('click', () => { controls.forEach(el => { el.value = ''; }); apply(true); controls[0].focus(); });
+  addEventListener('popstate', () => { readUrl(); apply(false); });
+  readUrl();
+  apply(false);
 })();
 """
 
 
-def esc(s: Any) -> str:
-    return html.escape("" if s is None else str(s), quote=True)
+PLAYER_JS = r"""
+(function () {
+  const button = document.querySelector('[data-load-player]');
+  if (!button) return;
+  button.addEventListener('click', function () {
+    const frame = document.createElement('iframe');
+    frame.src = button.dataset.embed;
+    frame.title = button.dataset.title;
+    frame.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    button.replaceWith(frame);
+    frame.tabIndex = -1;
+    frame.focus();
+  });
+  document.querySelectorAll('[data-copy]').forEach(function (copy) {
+    copy.addEventListener('click', async function () {
+      const value = document.getElementById(copy.dataset.copy).textContent.trim();
+      try { await navigator.clipboard.writeText(value); copy.textContent = 'Скопировано'; document.getElementById('copy-status').textContent = 'Текст скопирован'; }
+      catch (_) { window.prompt('Скопируйте текст', value); }
+    });
+  });
+})();
+"""
 
 
-def fmt_duration(sec: Any) -> str:
-    try:
-        s = int(sec or 0)
-    except (TypeError, ValueError):
-        return "—"
-    if s <= 0:
-        return "—"
-    h, rem = divmod(s, 3600)
-    m, s2 = divmod(rem, 60)
-    if h:
-        return f"{h}:{m:02d}:{s2:02d}"
-    return f"{m}:{s2:02d}"
+def esc(value: Any) -> str:
+    return html.escape("" if value is None else str(value), quote=True)
 
 
-def youtube_id_from_url(url: str) -> str | None:
-    if not url:
-        return None
-    m = re.search(r"(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{6,})", url)
-    return m.group(1) if m else None
+def visible(value: Any) -> str:
+    """Normalize visible punctuation while leaving JSON source values intact."""
+    return str(value or "").replace("\u2013", "-").replace("\u2014", "-")
 
 
-def load_json(path: Path) -> Any:
-    with path.open("r", encoding="utf-8") as f:
-        return json.load(f)
+def youtube_id(value: Any) -> str | None:
+    text = str(value or "")
+    if re.fullmatch(r"[A-Za-z0-9_-]{11}", text):
+        return text
+    match = re.search(r"(?:v=|youtu\.be/|embed/|shorts/)([A-Za-z0-9_-]{11})", text)
+    return match.group(1) if match else None
 
 
-def merge_catalog(catalog: list[dict], pipeline: dict) -> tuple[list[dict], dict]:
-    pipe_by_id: dict[str, dict] = {}
-    for v in pipeline.get("videos") or []:
-        vid = v.get("id") or youtube_id_from_url(v.get("youtube_url") or "")
-        if vid:
-            pipe_by_id[vid] = v
+def first(record: dict, *keys: str, default: Any = None) -> Any:
+    for key in keys:
+        if record.get(key) not in (None, ""):
+            return record[key]
+    return default
 
-    by_id: dict[str, dict] = {}
-    title_collisions: dict[str, list[str]] = defaultdict(list)
 
-    for row in catalog:
-        rid = row.get("id") or youtube_id_from_url(row.get("url") or "")
+def list_value(value: Any) -> list:
+    if value in (None, ""):
+        return []
+    return value if isinstance(value, list) else [value]
+
+
+def parse_duration(value: Any) -> int:
+    if isinstance(value, (int, float)):
+        return max(0, int(value))
+    text = str(value or "")
+    if text.isdigit():
+        return int(text)
+    iso = re.fullmatch(r"PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?", text)
+    if iso:
+        return int(iso.group(1) or 0) * 3600 + int(iso.group(2) or 0) * 60 + int(iso.group(3) or 0)
+    return 0
+
+
+def iso_duration(seconds: int) -> str:
+    hours, rest = divmod(seconds, 3600)
+    minutes, secs = divmod(rest, 60)
+    return "PT" + (f"{hours}H" if hours else "") + (f"{minutes}M" if minutes else "") + f"{secs}S"
+
+
+def fmt_duration(value: Any) -> str:
+    seconds = parse_duration(value)
+    if not seconds:
+        return "не указана"
+    hours, rest = divmod(seconds, 3600)
+    minutes, secs = divmod(rest, 60)
+    return f"{hours}:{minutes:02d}:{secs:02d}" if hours else f"{minutes}:{secs:02d}"
+
+
+def option_values(records: Iterable[dict], key: str) -> list[str]:
+    values = set()
+    for record in records:
+        for value in list_value(record.get(key)):
+            if value:
+                values.add(str(value))
+    return sorted(values, key=str.casefold)
+
+
+def contributor_names(value: Any) -> list[str]:
+    names = []
+    for contributor in list_value(value):
+        if isinstance(contributor, dict):
+            name = first(contributor, "name", "label", "title")
+            role = contributor.get("role")
+            if name:
+                names.append(f"{name}, {role}" if role else str(name))
+        elif contributor:
+            names.append(str(contributor))
+    return names
+
+
+def transcript_data(record: dict) -> dict:
+    raw = record.get("transcript")
+    if isinstance(raw, dict):
+        status = first(raw, "status", "state", default="none")
+        url = first(raw, "url", "href")
+        verified = bool(raw.get("verified") or str(status).casefold() in {"verified", "проверена", "complete"})
+    else:
+        status = first(record, "transcript_status", "stage", default="none")
+        url = first(record, "transcript_url")
+        verified = bool(record.get("transcript_verified"))
+    normalized = str(status or "none").casefold()
+    if verified and url:
+        bucket, label = "verified", "проверена"
+    elif normalized not in {"", "none", "missing", "absent", "нет"}:
+        bucket, label = "indexed", "есть сведения"
+    else:
+        bucket, label = "none", "нет сведений"
+    return {"status": str(status or "none"), "bucket": bucket, "label": label, "url": url, "verified": bool(verified and url)}
+
+
+def infer_type(title: str) -> str:
+    lowered = title.casefold()
+    if any(word in lowered for word in ("интервью", "беседа")):
+        return "интервью"
+    if any(word in lowered for word in ("фильм", "документаль")):
+        return "фильм"
+    if any(word in lowered for word in ("семинар", "конференц")):
+        return "семинар"
+    return "лекция"
+
+
+def normalize_records(payload: Any) -> tuple[list[dict], dict]:
+    if isinstance(payload, list):
+        raw_records, meta = payload, {}
+    elif isinstance(payload, dict):
+        raw_records = next((payload.get(k) for k in ("records", "videos", "items", "catalog") if isinstance(payload.get(k), list)), [])
+        meta = payload
+    else:
+        raise ValueError("catalog root must be an object or array")
+
+    prepared = []
+    for raw in raw_records:
+        if not isinstance(raw, dict):
+            continue
+        source = raw.get("source") if isinstance(raw.get("source"), dict) else {}
+        rid = youtube_id(first(raw, "youtube_id", "id", "url", "youtube_url") or first(source, "youtube_id", "url"))
         if not rid:
             continue
-        title = (row.get("title") or "").strip() or rid
-        title_collisions[rid].append(title)
-        cur = by_id.get(rid)
-        rel = row.get("related_entities") or []
-        if cur is None:
-            by_id[rid] = {
-                "id": rid,
-                "title": title,
-                "url": row.get("url") or f"https://www.youtube.com/watch?v={rid}",
-                "date": row.get("date") or None,
-                "duration": int(row.get("duration") or 0),
-                "timecodes": row.get("timecodes") or [],
-                "related_entities": list(rel),
-                "titles_all": [title],
-            }
-        else:
-            if title not in cur["titles_all"]:
-                cur["titles_all"].append(title)
-            # Keep richest related_entities
-            if len(rel) > len(cur.get("related_entities") or []):
-                cur["related_entities"] = list(rel)
-                cur["title"] = title
-            if not cur.get("date") and row.get("date"):
-                cur["date"] = row["date"]
-            if int(row.get("duration") or 0) > int(cur.get("duration") or 0):
-                cur["duration"] = int(row["duration"])
+        title = str(first(raw, "title_display", "human_title", "title", "display_title", default=rid)).strip()
+        accession_raw = first(raw, "accession", "record_accession", "catalog_number")
+        accession = str(accession_raw).zfill(3) if str(accession_raw or "").isdigit() else None
+        duration = parse_duration(first(raw, "duration", "duration_seconds", "duration_sec"))
+        date_recorded = first(raw, "date_recorded", "recorded_date")
+        upload_date = first(raw, "upload_date", "date_uploaded", "date")
+        topics = [str(value) for value in list_value(first(raw, "topics", "topic", "theme")) if value]
+        topic = topics[0] if topics else None
+        kind = first(raw, "type", "record_type", "genre")
+        series = first(raw, "purpose", "series", "collection")
+        transcript = transcript_data(raw)
+        url = first(raw, "watch_url", "url", "youtube_url", default=f"https://www.youtube.com/watch?v={rid}")
+        prepared.append({
+            "_source": raw,
+            "accession": accession,
+            "id": rid,
+            "title": title,
+            "title_source": first(raw, "title_source", default=title),
+            "url": url,
+            "date": first(raw, "date", default=upload_date),
+            "date_recorded": date_recorded,
+            "upload_date": upload_date,
+            "year": str(first(raw, "year", default=(str(date_recorded or upload_date)[:4] if date_recorded or upload_date else ""))),
+            "duration": duration,
+            "topic": topic,
+            "topics": topics,
+            "type": kind,
+            "series": series,
+            "purpose": raw.get("purpose"),
+            "last_verified_at": raw.get("last_verified_at"),
+            "contributors": contributor_names(first(raw, "contributors", "creators", "participants")),
+            "transcript": transcript,
+            "bibliography": list_value(first(raw, "bibliography", "citations")),
+            "provenance": list_value(first(raw, "provenance", "sources")),
+            "related_entities": list_value(raw.get("related_entities")),
+            "description": first(raw, "description", "abstract"),
+            "stage": raw.get("stage"),
+            "collision": bool(raw.get("collision")),
+            "titles_all": list_value(raw.get("titles_all")) or [title],
+        })
 
-    # Ensure pipeline-only videos appear
-    for rid, pv in pipe_by_id.items():
-        if rid not in by_id:
-            by_id[rid] = {
-                "id": rid,
-                "title": (pv.get("title") or rid).strip(),
-                "url": pv.get("youtube_url") or f"https://www.youtube.com/watch?v={rid}",
-                "date": None,
-                "duration": int(pv.get("duration_sec") or 0),
-                "timecodes": [],
-                "related_entities": [],
-                "titles_all": [(pv.get("title") or rid).strip()],
-            }
-
-    videos: list[dict] = []
-    collisions = []
-    for rid, item in by_id.items():
-        titles = item["titles_all"]
-        uniq_titles = []
-        seen = set()
-        for t in titles:
-            k = t.casefold()
-            if k not in seen:
-                seen.add(k)
-                uniq_titles.append(t)
-        item["titles_all"] = uniq_titles
-        item["collision"] = len(uniq_titles) > 1
-        if item["collision"]:
-            collisions.append({"id": rid, "titles": uniq_titles})
-
-        pv = pipe_by_id.get(rid) or {}
-        item["theme"] = pv.get("theme") or None
-        item["stage"] = pv.get("stage") or None
-        item["purpose"] = pv.get("purpose") or None
-        item["transcription_quality"] = None
-        tr = pv.get("transcription")
-        if isinstance(tr, dict):
-            item["transcription_quality"] = tr.get("quality")
-        elif isinstance(tr, str):
-            item["transcription_quality"] = tr
-        if not item.get("duration") and pv.get("duration_sec"):
-            item["duration"] = int(pv["duration_sec"])
-        if not item.get("url") and pv.get("youtube_url"):
-            item["url"] = pv["youtube_url"]
-
-        # Path slug = YouTube id (stable)
-        item["path"] = f"video/{rid}/"
-        videos.append(item)
-
-    videos.sort(key=lambda v: (v.get("title") or "").casefold())
-    meta = {
-        "raw_catalog_rows": len(catalog),
-        "unique_videos": len(videos),
-        "pipeline_videos": len(pipeline.get("videos") or []),
-        "collisions": collisions,
-        "pipeline_stats": pipeline.get("stats") or {},
-        "built_at": BUILT_AT,
-        "source": {
-            "catalog": "BookIndex/app_data.json → video_catalog",
-            "pipeline": "BookIndex/data/video_pipeline.json",
-        },
-    }
-    return videos, meta
+    # Fallback accessions exist only to make the migration fixture buildable.
+    # The public BookIndex export supplies frozen accessions and wins here.
+    ordered = sorted(prepared, key=lambda r: (r["title"].casefold(), r["id"]))
+    used: set[str] = set()
+    for number, record in enumerate(ordered, 1):
+        accession = record["accession"] or f"{number:03d}"
+        if not re.fullmatch(r"\d{3}", accession):
+            raise ValueError(f"invalid accession {accession!r} for {record['id']}")
+        if accession in used:
+            raise ValueError(f"duplicate accession {accession}")
+        used.add(accession)
+        record["accession"] = accession
+        record["path"] = f"v/{accession}/"
+        record["legacy_path"] = f"video/{record['id']}/"
+    return sorted(ordered, key=lambda r: r["accession"]), meta
 
 
-def page_shell(
-    *,
-    title: str,
-    description: str,
-    canonical: str,
-    body: str,
-    extra_head: str = "",
-    scripts: str = "",
-) -> str:
-    return f"""<!DOCTYPE html>
+def page_shell(*, title: str, description: str, canonical: str, body: str, og_type: str = "website", og_image: str | None = None, json_ld: dict | None = None, robots: str = "index, follow", scripts: str = "", extra_head: str = "") -> str:
+    social_image = f'<meta property="og:image" content="{esc(og_image)}">\n<meta name="twitter:image" content="{esc(og_image)}">' if og_image else ""
+    structured = f'<script type="application/ld+json">{json.dumps(json_ld, ensure_ascii=False, separators=(",", ":"), sort_keys=True).replace("</", "<\\/")}</script>' if json_ld else ""
+    return f'''<!doctype html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{esc(title)}</title>
-<meta name="description" content="{esc(description)}">
-<meta name="robots" content="index, follow">
+<title>{esc(visible(title))}</title>
+<meta name="description" content="{esc(visible(description))}">
+<meta name="robots" content="{esc(robots)}">
 <link rel="canonical" href="{esc(canonical)}">
-<meta property="og:type" content="website">
-<meta property="og:title" content="{esc(title)}">
-<meta property="og:description" content="{esc(description)}">
+<meta property="og:type" content="{esc(og_type)}">
+<meta property="og:title" content="{esc(visible(title))}">
+<meta property="og:description" content="{esc(visible(description))}">
 <meta property="og:url" content="{esc(canonical)}">
-<meta name="theme-color" content="#8c3a15">
+<meta name="twitter:card" content="summary_large_image">
+{social_image}
+<meta name="theme-color" content="#7a2f2b">
 <style>{CSS}</style>
+{structured}
 {extra_head}
 </head>
 <body>
+<a class="skip-link" href="#main">К основному содержанию</a>
 {body}
 {scripts}
 </body>
 </html>
-"""
+'''
 
 
 def footer_html() -> str:
-    return f"""
-<footer class="site wrap">
-  <p>Каталог публичных лекций А. А. Зализняка. Данные собраны в проекте
-  <a href="https://github.com/gasyoun/BookIndex">BookIndex</a>;
-  полная корпусная оболочка (указатель, KWIC, симуляторы) —
-  <a href="{esc(BOOKINDEX_VIDEO)}">видеогалерея BookIndex</a>.</p>
-  <p>Видео размещены на YouTube правообладателями/архивами; здесь — только индекс и ссылки.
-  Сборка: {esc(BUILT_AT)} ·
-  <a href="https://github.com/gasyoun/ZalizniakVideo">исходники</a></p>
-</footer>
-"""
+    return f'''<footer class="site-footer"><div class="wrap">
+<p>Научно-редакционный указатель публичных видеозаписей. Видео хранятся у их правообладателей. Каталог связывает записи, проверяемые метаданные и материалы <a href="{esc(BOOKINDEX_VIDEO)}">BookIndex</a>.</p>
+<p><a href="data/catalog.json">JSON v1</a> · <a href="data/catalog.v2.json">JSON v2</a> · <a href="https://github.com/gasyoun/ZalizniakVideo">Исходный код</a></p>
+</div></footer>'''
 
 
-def render_index(videos: list[dict], meta: dict) -> str:
-    themes = sorted({v.get("theme") for v in videos if v.get("theme")})
-    theme_opts = ['<option value="">Все темы</option>'] + [
-        f'<option value="{esc(t)}">{esc(t)}</option>' for t in themes
-    ]
-    hours = sum(int(v.get("duration") or 0) for v in videos) / 3600.0
-    n_coll = len(meta.get("collisions") or [])
+def filter_select(name: str, label: str, values: list[str], all_label: str) -> str:
+    options = [f'<option value="">{esc(all_label)}</option>'] + [f'<option value="{esc(v)}">{esc(visible(v))}</option>' for v in values]
+    return f'<div class="field"><label for="{name}">{esc(label)}</label><select id="{name}" name="{name}" data-filter>{"".join(options)}</select></div>'
 
+
+def render_index(records: list[dict]) -> str:
     cards = []
-    for v in videos:
-        search = " ".join(
-            [
-                v.get("title") or "",
-                " ".join(v.get("titles_all") or []),
-                v.get("theme") or "",
-                v.get("id") or "",
-            ]
-        ).lower()
-        chips = []
-        if v.get("theme"):
-            chips.append(f'<span class="chip">{esc(v["theme"])}</span>')
-        if v.get("collision"):
-            chips.append(
-                f'<span class="chip warn" title="Несколько разных заголовков на один YouTube id">'
-                f"коллизия ×{len(v['titles_all'])}</span>"
-            )
-        if v.get("stage"):
-            chips.append(f'<span class="chip">{esc(v["stage"])}</span>')
-        cards.append(
-            f"""
-<li class="card" data-card
-    data-search="{esc(search)}"
-    data-theme="{esc(v.get('theme') or '')}"
-    data-title="{esc(v.get('title') or '')}"
-    data-date="{esc(v.get('date') or '')}"
-    data-duration="{int(v.get('duration') or 0)}">
-  <a class="title" href="{esc(v['path'])}">{esc(v.get('title') or v['id'])}</a>
-  <div class="row">
-    <span>{esc(fmt_duration(v.get('duration')))}</span>
-    <span>{esc(v.get('date') or 'дата не указана')}</span>
-    <span>id: {esc(v['id'])}</span>
-  </div>
-  <div class="row">{''.join(chips)}</div>
-</li>"""
-        )
-
-    body = f"""
-<header class="site">
-  <div class="wrap">
-    <div class="brand">ZalizniakVideo · только видео</div>
-    <h1>Публичные лекции А. А. Зализняка</h1>
-    <p class="lede">Индекс записей на YouTube: отдельная страница на каждое видео.
-    Это не расшифровки и не главы книги «Из жизни слов и языков» — только каталог выступлений.</p>
-    <div class="meta-bar">
-      <span><strong>{len(videos)}</strong> видео</span>
-      <span><strong>{hours:.0f}</strong> ч суммарно</span>
-      <span>исходный каталог: <strong>{meta['raw_catalog_rows']}</strong> строк →
-        <strong>{meta['unique_videos']}</strong> уникальных id</span>
-      <span>коллизии id: <strong>{n_coll}</strong></span>
-    </div>
-  </div>
-</header>
-<main class="wrap">
-  <div class="controls">
-    <div>
-      <label for="q">Поиск</label>
-      <input id="q" type="search" placeholder="название, тема, id…" autocomplete="off">
-    </div>
-    <div>
-      <label for="theme">Тема (конвейер)</label>
-      <select id="theme">{''.join(theme_opts)}</select>
-    </div>
-    <div>
-      <label for="sort">Сортировка</label>
-      <select id="sort">
-        <option value="title" selected>по названию</option>
-        <option value="duration-desc">дольше сначала</option>
-        <option value="duration-asc">короче сначала</option>
-        <option value="date-desc">новее (где есть дата)</option>
-        <option value="date-asc">старше (где есть дата)</option>
-      </select>
-    </div>
-  </div>
-  <p id="result-count" role="status" aria-live="polite"></p>
-  <ul class="list" id="video-list">
-    {''.join(cards)}
-  </ul>
-  <div id="empty" class="empty">Ничего не найдено. Сбросьте поиск или тему.</div>
-  <p class="note">Прямая ссылка на этот индекс:
-    <a href="{esc(SITE_BASE)}/">{esc(SITE_BASE)}/</a>.
-    Корпусная галерея в BookIndex:
-    <a href="{esc(BOOKINDEX_VIDEO)}">{esc(BOOKINDEX_VIDEO)}</a>.</p>
-</main>
-{footer_html()}
-"""
-    scripts = f"<script>{INDEX_JS}</script>"
-    return page_shell(
-        title="Видеолекции А. А. Зализняка — каталог",
-        description=(
-            f"Индекс {len(videos)} публичных видеолекций академика А. А. Зализняка "
-            f"(~{hours:.0f} ч). Отдельная страница на каждое видео."
-        ),
-        canonical=f"{SITE_BASE}/",
-        body=body,
-        scripts=scripts,
-    )
-
-
-def render_video(v: dict) -> str:
-    rid = v["id"]
-    title = v.get("title") or rid
-    desc = f"Видеолекция: {title}. А. А. Зализняк."
-    yt = v.get("url") or f"https://www.youtube.com/watch?v={rid}"
-    embed = f"https://www.youtube-nocookie.com/embed/{rid}"
-    entities = v.get("related_entities") or []
-    # Cap chips for readability
-    ent_html = []
-    for e in entities[:40]:
-        head = e.get("head") or ""
-        if not head:
-            continue
-        t = e.get("t")
-        t_html = f'<span class="t">▸ {int(t)//60}:{int(t)%60:02d}</span>' if t is not None else ""
-        ent_html.append(f'<span class="entity">{esc(head)}{t_html}</span>')
-
-    collision_block = ""
-    if v.get("collision"):
-        lis = "".join(f"<li>{esc(t)}</li>" for t in v.get("titles_all") or [])
-        collision_block = f"""
-<div class="section">
-  <h2>⚠ Несколько заголовков на один YouTube id</h2>
-  <p class="note">В исходном каталоге BookIndex на id <code>{esc(rid)}</code>
-  висят разные названия семинаров. На YouTube это одна запись; лишние названия —
-  ошибка сопоставления (см. issue в репозитории). Сохранены все варианты:</p>
-  <ul>{lis}</ul>
-</div>
-"""
-
-    meta_bits = [
-        f"<span>Длительность: <strong>{esc(fmt_duration(v.get('duration')))}</strong></span>",
-        f"<span>Дата: <strong>{esc(v.get('date') or 'не указана')}</strong></span>",
+    for record in records:
+        date = record.get("date_recorded") or record.get("upload_date") or "дата неизвестна"
+        tags = " · ".join(visible(v) for v in ([record.get("type") or "тип не указан"] + record.get("topics", [])) if v)
+        contributors = ", ".join(visible(v) for v in record["contributors"])
+        search = " ".join(str(v or "") for v in (record["accession"], record["id"], record["title"], contributors, record.get("topic"), record.get("series")))
+        cards.append(f'''<li class="card" data-card data-search="{esc(search)}" data-topic="{esc('|'.join(record.get('topics', [])))}" data-type="{esc(record.get('type') or '')}" data-series="{esc(record.get('series') or '')}" data-year="{esc(record.get('year') or '')}" data-transcript="{esc(record['transcript']['bucket'])}">
+<a class="card-link" href="{esc(record['path'])}">
+<img class="thumb" src="assets/thumbs/{record['accession']}.jpg" alt="" width="480" height="270" loading="lazy" decoding="async">
+<div class="card-kicker"><span class="accession">№ {record['accession']}</span><span>{esc(fmt_duration(record['duration']))}</span></div>
+<h2>{esc(visible(record['title']))}</h2>
+</a>
+{f'<p class="contributors">{esc(contributors)}</p>' if contributors else ''}
+<p class="card-meta">{esc(visible(date))} · Расшифровка: {esc(record['transcript']['label'])}</p>
+{f'<p class="card-tags">{esc(tags)}</p>' if tags else ''}
+</li>''')
+    filters = [
+        '<div class="field"><label for="q">Поиск по архиву</label><input id="q" name="q" data-filter type="search" autocomplete="off" placeholder="Название, участник, номер"></div>',
+        filter_select("topic", "Тема", option_values(records, "topics"), "Все темы"),
+        filter_select("type", "Тип", option_values(records, "type"), "Все типы"),
+        filter_select("series", "Серия", option_values(records, "series"), "Все серии"),
+        filter_select("year", "Год", option_values(records, "year"), "Все годы"),
+        filter_select("transcript", "Расшифровка", ["verified", "indexed", "none"], "Любой статус"),
+        '<div class="filter-actions"><button class="reset" id="reset" type="button">Сбросить</button></div>',
     ]
-    if v.get("theme"):
-        meta_bits.append(f"<span>Тема: <strong>{esc(v['theme'])}</strong></span>")
-    if v.get("stage"):
-        meta_bits.append(f"<span>Стадия конвейера: <strong>{esc(v['stage'])}</strong></span>")
-
-    body = f"""
-<header class="site">
-  <div class="wrap">
-    <p class="crumbs"><a href="../../">← Все видео</a></p>
-    <div class="brand">ZalizniakVideo</div>
-    <h1>{esc(title)}</h1>
-    <div class="meta-bar">{''.join(meta_bits)}</div>
-  </div>
-</header>
-<main class="wrap">
-  <div class="player">
-    <iframe
-      src="{esc(embed)}"
-      title="{esc(title)}"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"></iframe>
-  </div>
-  <div class="actions">
-    <a class="btn primary" href="{esc(yt)}" rel="noopener noreferrer" target="_blank">Открыть на YouTube</a>
-    <a class="btn" href="{esc(BOOKINDEX_VIDEO_DETAIL.format(id=rid))}" rel="noopener noreferrer">Карточка в BookIndex</a>
-    <a class="btn" href="../../">К каталогу</a>
-  </div>
-  {collision_block}
-  <div class="section">
-    <h2>Связанные сущности</h2>
-    {('<div class="entities">' + ''.join(ent_html) + '</div>') if ent_html else '<p class="note">Пока нет разметки сущностей для этого ролика.</p>'}
-    <p class="note">Метки минут (▸ ММ:СС), если есть, ведут к моменту в расшифровке/KWIC в BookIndex; полный текст расшифровки здесь не публикуется.</p>
-  </div>
-  <p class="note">Постоянная ссылка на эту страницу:
-    <a href="{esc(SITE_BASE)}/video/{esc(rid)}/">{esc(SITE_BASE)}/video/{esc(rid)}/</a></p>
-</main>
-{footer_html()}
-"""
-    return page_shell(
-        title=f"{title} — Зализняк",
-        description=desc,
-        canonical=f"{SITE_BASE}/video/{rid}/",
-        body=body,
-    )
+    body = f'''<header class="masthead"><div class="wrap">
+<div class="brand-row"><div class="brand">ZalizniakVideo · Архив видеозаписей</div><div class="accession">Редакционный каталог</div></div>
+<h1>А. А. Зализняк: видеозаписи и материалы</h1>
+<p class="lede">Публичный научно-редакционный архив для читателей, исследователей и студентов. Каждая запись имеет постоянный номер, библиографию и сведения о происхождении, когда они подтверждены источником.</p>
+<div class="archive-facts"><span><strong>{len(records)}</strong> записей</span><span>Постоянная нумерация</span><span>Локальные обложки</span></div>
+</div></header>
+<main class="wrap" id="main">
+<form class="filters" role="search" onsubmit="return false">{"".join(filters)}</form>
+<p class="results" id="result-count" role="status" aria-live="polite">Всего записей: {len(records)}</p>
+<ul class="gallery">{"".join(cards)}</ul>
+<div class="empty" id="empty"><strong>Записей с такими параметрами нет.</strong><br>Измените запрос или сбросьте фильтры.</div>
+</main>{footer_html()}'''
+    description = f"Научно-редакционный архив из {len(records)} публичных видеозаписей, связанных с работами А. А. Зализняка."
+    return page_shell(title="А. А. Зализняк: архив видеозаписей", description=description, canonical=f"{SITE_BASE}/", body=body, scripts=f"<script>{INDEX_JS}</script>")
 
 
-def write_sitemap(videos: list[dict]) -> str:
-    urls = [f"  <url><loc>{SITE_BASE}/</loc><changefreq>weekly</changefreq></url>"]
-    for v in videos:
-        urls.append(
-            f"  <url><loc>{SITE_BASE}/video/{v['id']}/</loc>"
-            f"<changefreq>monthly</changefreq></url>"
-        )
-    return (
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "\n".join(urls)
-        + "\n</urlset>\n"
-    )
+def render_list(values: list[Any]) -> str:
+    items = []
+    for value in values:
+        if isinstance(value, dict):
+            label = first(value, "label", "title", "citation", "source", "name", default=json.dumps(value, ensure_ascii=False, sort_keys=True))
+        else:
+            label = value
+        items.append(f"<li>{esc(visible(label))}</li>")
+    return f'<ul>{"".join(items)}</ul>' if items else '<p class="note">Сведения пока не представлены в публичном каталоге.</p>'
+
+
+def render_video(record: dict) -> str:
+    accession, rid, title = record["accession"], record["id"], record["title"]
+    canonical = f"{SITE_BASE}/v/{accession}/"
+    image_url = f"{SITE_BASE}/assets/thumbs/{accession}.jpg"
+    youtube_url = record["url"]
+    embed_url = f"https://www.youtube-nocookie.com/embed/{rid}"
+    date = record.get("date_recorded") or record.get("upload_date")
+    description = visible(record.get("description") or f"Архивная карточка видеозаписи «{title}»: проверяемые метаданные, происхождение и связанные материалы.")
+    citation = f"{visible(title)}. Видеозапись. ZalizniakVideo, № {accession}. {canonical}"
+    facts = [
+        ("Номер", f"№ {accession}"),
+        ("Тип", record.get("type")),
+        ("Тема", record.get("topic")),
+        ("Серия", record.get("series")),
+        ("Дата записи", record.get("date_recorded")),
+        ("Дата публикации", record.get("upload_date")),
+        ("Длительность", fmt_duration(record.get("duration"))),
+        ("Участники", ", ".join(record["contributors"])),
+        ("Последняя проверка", record.get("last_verified_at")),
+    ]
+    fact_html = "".join(f"<div><dt>{esc(label)}</dt><dd>{esc(visible(value))}</dd></div>" for label, value in facts if value)
+    transcript = record["transcript"]
+    transcript_html = f'<p><a class="button" href="{esc(transcript["url"])}">Открыть проверенную расшифровку</a></p>' if transcript["verified"] else f'<p class="note">Статус: {esc(transcript["label"])}. Проверенная ссылка на полный текст не опубликована.</p>'
+    entities = []
+    for entity in record["related_entities"][:48]:
+        label = first(entity, "head", "label", "name") if isinstance(entity, dict) else entity
+        if label:
+            entities.append(f"<li>{esc(visible(label))}</li>")
+    json_ld: dict[str, Any] = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": visible(title),
+        "description": description,
+        "duration": iso_duration(record["duration"]),
+        "thumbnailUrl": image_url,
+        "embedUrl": embed_url,
+        "sameAs": youtube_url,
+        "identifier": accession,
+        "url": canonical,
+    }
+    if record.get("date_recorded"):
+        json_ld["dateRecorded"] = record["date_recorded"]
+    if record.get("upload_date"):
+        json_ld["uploadDate"] = record["upload_date"]
+    body = f'''<header class="masthead"><div class="wrap">
+<p class="breadcrumbs"><a href="../../">Все записи</a> / № {accession}</p>
+<div class="brand">ZalizniakVideo · Архивная карточка</div>
+<h1>{esc(visible(title))}</h1>
+<div class="archive-facts"><span class="accession">№ {accession}</span>{f'<span>{esc(visible(date))}</span>' if date else '<span>Дата не установлена</span>'}<span>{esc(fmt_duration(record['duration']))}</span></div>
+</div></header>
+<main class="wrap" id="main"><div class="detail-grid"><article>
+<div class="player-shell">
+<button class="player-button" type="button" data-load-player data-embed="{esc(embed_url)}" data-title="{esc(visible(title))}" aria-label="Загрузить видеоплеер: {esc(visible(title))}">
+<img src="../../assets/thumbs/{accession}.jpg" alt="" width="1280" height="720"><span class="play-label">Загрузить видео</span>
+</button>
+</div>
+<p class="watch-fallback">Плеер загружается только по нажатию. <a href="{esc(youtube_url)}" rel="noopener noreferrer">Смотреть на YouTube</a>.</p>
+<noscript><p><a class="button primary" href="{esc(youtube_url)}">Смотреть видео на YouTube</a></p></noscript>
+<div class="detail-actions"><a class="button primary" href="{esc(youtube_url)}" rel="noopener noreferrer">Открыть на YouTube</a><button class="button" type="button" data-copy="citation">Копировать описание</button><button class="button" type="button" data-copy="permalink">Копировать ссылку</button></div><p class="note" id="copy-status" role="status" aria-live="polite"></p>
+<section class="section" aria-labelledby="bibliography"><h2 id="bibliography">Библиография</h2>{render_list(record['bibliography'])}</section>
+<section class="section" aria-labelledby="provenance"><h2 id="provenance">Происхождение записи</h2>{render_list(record['provenance'])}</section>
+<section class="section" aria-labelledby="transcript"><h2 id="transcript">Расшифровка</h2>{transcript_html}</section>
+<section class="section" aria-labelledby="entities"><h2 id="entities">Связанные сущности</h2>{f'<ul class="entity-list">{"".join(entities)}</ul>' if entities else '<p class="note">Сущности пока не представлены в публичном каталоге.</p>'}</section>
+</article><aside aria-label="Сведения о записи">
+<section><h2>Описание записи</h2><dl class="facts">{fact_html}</dl></section>
+<section class="section"><h2>Как цитировать</h2><p class="citation" id="citation">{esc(citation)}</p><p class="note">Постоянная ссылка: <span id="permalink">{esc(canonical)}</span></p></section>
+</aside></div></main>{footer_html()}'''
+    return page_shell(title=f"{title} · Запись № {accession}", description=description, canonical=canonical, body=body, og_type="video.other", og_image=image_url, json_ld=json_ld, scripts=f"<script>{PLAYER_JS}</script>")
+
+
+def render_alias(record: dict) -> str:
+    canonical = f"{SITE_BASE}/v/{record['accession']}/"
+    body = f'''<main class="wrap" id="main"><h1>Запись перемещена</h1><p>Постоянная карточка этой записи теперь доступна по адресу <a href="{esc(canonical)}">{esc(canonical)}</a>.</p></main>'''
+    return page_shell(title="Запись перемещена", description="Старая ссылка на архивную видеозапись.", canonical=canonical, body=body, robots="noindex, follow", extra_head=f'<meta http-equiv="refresh" content="0; url={esc(canonical)}">')
+
+
+def v1_export(records: list[dict], source_meta: dict, legacy_meta: dict | None = None) -> dict:
+    legacy_meta = legacy_meta or source_meta
+    source_videos = legacy_meta.get("videos") if isinstance(legacy_meta, dict) else None
+    source_by_id = {str(v.get("id")): v for v in source_videos or [] if isinstance(v, dict)}
+    videos = []
+    for record in records:
+        old = source_by_id.get(record["id"], {})
+        videos.append({
+            "id": record["id"], "title": old.get("title", record["title"]), "url": old.get("url", record["url"]),
+            "path": f"video/{record['id']}/", "date": old.get("date", record.get("date")), "duration": old.get("duration", record["duration"]),
+            "theme": old.get("theme", record.get("topic")), "stage": old.get("stage", record.get("stage")), "collision": old.get("collision", record.get("collision", False)),
+            "titles_all": old.get("titles_all", record["titles_all"]), "related_entities": old.get("related_entities", record["related_entities"]),
+        })
+    return {
+        "schema": "zalizniak-video-catalog/1", "site": SITE_BASE,
+        "built_at": source_meta.get("built_at") or source_meta.get("generated_at") or os.environ.get("BUILD_TIMESTAMP", "source-undated"),
+        "stats": {"unique_videos": len(records), "raw_catalog_rows": source_meta.get("stats", {}).get("raw_catalog_rows", source_meta.get("stats", {}).get("source_rows", len(records))), "pipeline_videos": source_meta.get("stats", {}).get("pipeline_videos", source_meta.get("stats", {}).get("videos", len(records))), "total_hours": round(sum(r["duration"] for r in records) / 3600, 2), "collisions": sum(bool(r["collision"]) for r in records)},
+        "collisions": source_meta.get("collisions", []), "videos": videos,
+    }
+
+
+def v2_export(records: list[dict], source_meta: dict) -> dict:
+    return {
+        "schema": "zalizniak-video-catalog/2", "site": SITE_BASE,
+        "source_schema": source_meta.get("schema") if isinstance(source_meta, dict) else None,
+        "built_at": source_meta.get("generated_at") or source_meta.get("built_at") or os.environ.get("BUILD_TIMESTAMP", "source-undated"),
+        "stats": {"records": len(records), "total_hours": round(sum(r["duration"] for r in records) / 3600, 2)},
+        "videos": [{k: r.get(k) for k in ("accession", "id", "title_source", "title", "url", "path", "legacy_path", "date_recorded", "upload_date", "year", "duration", "topics", "topic", "type", "purpose", "series", "contributors", "transcript", "bibliography", "provenance", "related_entities", "last_verified_at")} for r in records],
+    }
+
+
+def fetch_thumbnails(records: list[dict], thumb_root: Path) -> None:
+    thumb_root.mkdir(parents=True, exist_ok=True)
+    def fetch_one(record: dict) -> tuple[str, bool]:
+        target = thumb_root / f"{record['accession']}.jpg"
+        if target.is_file() and target.stat().st_size > 1024:
+            return record["accession"], True
+        urls = [f"https://i.ytimg.com/vi/{record['id']}/hqdefault.jpg", f"https://i.ytimg.com/vi/{record['id']}/mqdefault.jpg"]
+        for url in urls:
+            try:
+                request = urllib.request.Request(url, headers={"User-Agent": "ZalizniakVideo thumbnail cache/2"})
+                with urllib.request.urlopen(request, timeout=20) as response:
+                    data = response.read()
+                if len(data) > 1024 and data[:2] == b"\xff\xd8":
+                    target.write_bytes(data)
+                    return record["accession"], True
+            except (OSError, urllib.error.URLError):
+                continue
+        return record["accession"], False
+
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        futures = [pool.submit(fetch_one, record) for record in records]
+        for index, future in enumerate(as_completed(futures), 1):
+            accession, success = future.result()
+            print(f"thumbnail {index}/{len(records)}: {accession} {'ok' if success else 'failed'}")
+
+
+def validate(records: list[dict], thumb_root: Path, allow_missing: bool = False) -> None:
+    if not records:
+        raise ValueError("catalog has no valid YouTube records")
+    if len({r["accession"] for r in records}) != len(records):
+        raise ValueError("accessions are not unique")
+    if len({r["id"] for r in records}) != len(records):
+        raise ValueError("YouTube ids are not unique")
+    missing = [r["accession"] for r in records if not (thumb_root / f"{r['accession']}.jpg").is_file()]
+    if missing and not allow_missing:
+        raise ValueError(f"missing local thumbnails ({len(missing)}): {', '.join(missing[:12])}")
+
+
+def write_site(records: list[dict], source_meta: dict, root: Path, legacy_meta: dict | None = None) -> None:
+    (root / "data").mkdir(parents=True, exist_ok=True)
+    (root / "index.html").write_text(render_index(records), encoding="utf-8")
+    legacy_export = v1_export(records, source_meta, legacy_meta)
+    (root / "data" / "catalog.json").write_text(json.dumps(legacy_export, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (root / "data" / "catalog.v2.json").write_text(json.dumps(v2_export(records, source_meta), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (root / "data" / "stats.json").write_text(json.dumps(legacy_export["stats"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    for name in ("v", "video"):
+        output = root / name
+        if output.exists():
+            shutil.rmtree(output)
+        output.mkdir()
+    for record in records:
+        detail = root / record["path"]
+        alias = root / record["legacy_path"]
+        detail.mkdir(parents=True)
+        alias.mkdir(parents=True)
+        (detail / "index.html").write_text(render_video(record), encoding="utf-8")
+        (alias / "index.html").write_text(render_alias(record), encoding="utf-8")
+    urls = [f"  <url><loc>{SITE_BASE}/</loc></url>"] + [f"  <url><loc>{SITE_BASE}/v/{r['accession']}/</loc></url>" for r in records]
+    (root / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "\n".join(urls) + "\n</urlset>\n", encoding="utf-8")
+    (root / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE_BASE}/sitemap.xml\n", encoding="utf-8")
+    (root / ".nojekyll").write_text("", encoding="utf-8")
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--catalog", type=Path, help="BookIndex public video catalog")
+    parser.add_argument("--output", type=Path, default=ROOT, help="output site root")
+    parser.add_argument("--fetch-thumbnails", action="store_true", help="refresh missing thumbnail cache over the network")
+    parser.add_argument("--allow-missing-thumbnails", action="store_true", help=argparse.SUPPRESS)
+    return parser.parse_args()
 
 
 def main() -> int:
-    app_data = BOOKINDEX / "app_data.json"
-    pipeline_path = BOOKINDEX / "data" / "video_pipeline.json"
-    if not app_data.is_file():
-        print(f"ERROR: missing {app_data}", file=sys.stderr)
+    args = parse_args()
+    configured_catalog = os.environ.get("BOOKINDEX_VIDEO_CATALOG")
+    input_path = args.catalog or (Path(configured_catalog) if configured_catalog else None)
+    input_path = input_path or (DEFAULT_PUBLIC_CATALOG if DEFAULT_PUBLIC_CATALOG.is_file() else FALLBACK_CATALOG)
+    if not input_path.is_file():
+        print(f"ERROR: missing catalog: {input_path}", file=sys.stderr)
         return 1
-    if not pipeline_path.is_file():
-        print(f"ERROR: missing {pipeline_path}", file=sys.stderr)
+    try:
+        payload = json.loads(input_path.read_text(encoding="utf-8"))
+        legacy_meta = None
+        if input_path.resolve() != FALLBACK_CATALOG.resolve() and FALLBACK_CATALOG.is_file():
+            candidate = json.loads(FALLBACK_CATALOG.read_text(encoding="utf-8"))
+            if candidate.get("schema") == "zalizniak-video-catalog/1":
+                legacy_meta = candidate
+        records, source_meta = normalize_records(payload)
+        thumb_root = args.output / "assets" / "thumbs"
+        if args.fetch_thumbnails:
+            fetch_thumbnails(records, thumb_root)
+        validate(records, thumb_root, args.allow_missing_thumbnails)
+        write_site(records, source_meta, args.output, legacy_meta)
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        print(f"ERROR: {error}", file=sys.stderr)
         return 1
-
-    catalog = load_json(app_data).get("video_catalog") or []
-    pipeline = load_json(pipeline_path)
-    videos, meta = merge_catalog(catalog, pipeline)
-
-    data_dir = ROOT / "data"
-    data_dir.mkdir(parents=True, exist_ok=True)
-
-    # JSON export (stable public API for other consumers)
-    export = {
-        "schema": "zalizniak-video-catalog/1",
-        "site": SITE_BASE,
-        "built_at": BUILT_AT,
-        "stats": {
-            "unique_videos": len(videos),
-            "raw_catalog_rows": meta["raw_catalog_rows"],
-            "pipeline_videos": meta["pipeline_videos"],
-            "total_hours": round(sum(int(v.get("duration") or 0) for v in videos) / 3600.0, 2),
-            "collisions": len(meta["collisions"]),
-        },
-        "collisions": meta["collisions"],
-        "videos": [
-            {
-                "id": v["id"],
-                "title": v["title"],
-                "url": v["url"],
-                "path": v["path"],
-                "date": v.get("date"),
-                "duration": v.get("duration"),
-                "theme": v.get("theme"),
-                "stage": v.get("stage"),
-                "collision": v.get("collision"),
-                "titles_all": v.get("titles_all"),
-                "related_entities": v.get("related_entities") or [],
-            }
-            for v in videos
-        ],
-    }
-    (data_dir / "catalog.json").write_text(
-        json.dumps(export, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-    (data_dir / "stats.json").write_text(
-        json.dumps(export["stats"], ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-
-    (ROOT / "index.html").write_text(render_index(videos, meta), encoding="utf-8")
-    (ROOT / "sitemap.xml").write_text(write_sitemap(videos), encoding="utf-8")
-    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
-    (ROOT / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {SITE_BASE}/sitemap.xml\n",
-        encoding="utf-8",
-    )
-
-    # Wipe old video pages that no longer exist? keep simple: rewrite all known
-    video_root = ROOT / "video"
-    video_root.mkdir(exist_ok=True)
-    for v in videos:
-        d = video_root / v["id"]
-        d.mkdir(parents=True, exist_ok=True)
-        (d / "index.html").write_text(render_video(v), encoding="utf-8")
-
-    print(
-        f"OK: {len(videos)} video pages · "
-        f"collisions={len(meta['collisions'])} · "
-        f"out={ROOT}"
-    )
+    print(f"OK: {len(records)} canonical pages, {len(records)} aliases, input={input_path}")
     return 0
 
 
