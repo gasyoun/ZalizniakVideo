@@ -76,6 +76,25 @@ def encoded_export(payload):
 
 
 class NormalizeTests(unittest.TestCase):
+    def test_controlled_transcript_statuses_keep_public_meaning(self):
+        expected = {
+            "unknown": ("none", "статус неизвестен", False),
+            "none": ("none", "нет", False),
+            "automatic": ("indexed", "автоматическая", False),
+            "partial": ("indexed", "частичная", False),
+            "checked": ("verified", "проверена", True),
+            "edited": ("verified", "отредактирована", True),
+            "published": ("verified", "опубликована", True),
+            "problem": ("indexed", "требует проверки", False),
+        }
+        for status, (bucket, label, verified) in expected.items():
+            with self.subTest(status=status):
+                result = build_site.transcript_data({
+                    "transcript_status": status,
+                    "transcript_url": "https://example.org/transcript" if verified else None,
+                })
+                self.assertEqual((result["bucket"], result["label"], result["verified"]), (bucket, label, verified))
+
     def test_public_contract_maps_to_frozen_accession(self):
         records, meta = build_site.normalize_records(fixture_payload())
         self.assertEqual(meta["schema"], "video_catalog_public/1")

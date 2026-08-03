@@ -358,15 +358,30 @@ def transcript_data(record: dict) -> dict:
     if isinstance(raw, dict):
         status = first(raw, "status", "state", default="none")
         url = first(raw, "url", "href")
-        verified = bool(raw.get("verified") or str(status).casefold() in {"verified", "проверена", "complete"})
+        verified = bool(raw.get("verified") or str(status).casefold() in {"verified", "проверена", "complete", "checked", "edited", "published"})
     else:
         status = first(record, "transcript_status", "stage", default="none")
         url = first(record, "transcript_url")
-        verified = bool(record.get("transcript_verified"))
+        verified = bool(
+            record.get("transcript_verified")
+            or str(status).casefold() in {"verified", "проверена", "complete", "checked", "edited", "published"}
+        )
     normalized = str(status or "none").casefold()
-    if verified and url:
+    controlled = {
+        "unknown": ("none", "статус неизвестен"),
+        "none": ("none", "нет"),
+        "automatic": ("indexed", "автоматическая"),
+        "partial": ("indexed", "частичная"),
+        "checked": ("verified", "проверена"),
+        "edited": ("verified", "отредактирована"),
+        "published": ("verified", "опубликована"),
+        "problem": ("indexed", "требует проверки"),
+    }
+    if normalized in controlled:
+        bucket, label = controlled[normalized]
+    elif verified and url:
         bucket, label = "verified", "проверена"
-    elif normalized not in {"", "none", "missing", "absent", "нет"}:
+    elif normalized not in {"", "missing", "absent", "нет"}:
         bucket, label = "indexed", "есть сведения"
     else:
         bucket, label = "none", "нет сведений"
@@ -695,10 +710,18 @@ def v2_export(records: list[dict], source_meta: dict) -> dict:
 
 def fetch_thumbnails(records: list[dict], thumb_root: Path) -> None:
     thumb_root.mkdir(parents=True, exist_ok=True)
+    missing_records = [
+        record
+        for record in records
+        if not (thumb_root / f"{record['accession']}.jpg").is_file()
+        or (thumb_root / f"{record['accession']}.jpg").stat().st_size <= 1024
+    ]
+    if not missing_records:
+        print(f"thumbnail cache: all {len(records)} present")
+        return
+
     def fetch_one(record: dict) -> tuple[str, bool]:
         target = thumb_root / f"{record['accession']}.jpg"
-        if target.is_file() and target.stat().st_size > 1024:
-            return record["accession"], True
         urls = [f"https://i.ytimg.com/vi/{record['id']}/hqdefault.jpg", f"https://i.ytimg.com/vi/{record['id']}/mqdefault.jpg"]
         for url in urls:
             try:
@@ -713,10 +736,10 @@ def fetch_thumbnails(records: list[dict], thumb_root: Path) -> None:
         return record["accession"], False
 
     with ThreadPoolExecutor(max_workers=12) as pool:
-        futures = [pool.submit(fetch_one, record) for record in records]
+        futures = [pool.submit(fetch_one, record) for record in missing_records]
         for index, future in enumerate(as_completed(futures), 1):
             accession, success = future.result()
-            print(f"thumbnail {index}/{len(records)}: {accession} {'ok' if success else 'failed'}")
+            print(f"thumbnail {index}/{len(missing_records)}: {accession} {'ok' if success else 'failed'}")
 
 
 def validate(records: list[dict], thumb_root: Path, allow_missing: bool = False) -> None:
