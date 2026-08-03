@@ -27,7 +27,7 @@ jobs:
 
       - name: Upload actionable binary patch
         if: ${{ hashFiles('.sync-artifacts/bookindex-video-v2.patch') != '' }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: bookindex-video-v2-binary-patch
           path: .sync-artifacts/bookindex-video-v2.patch
@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload raw-export integrity metadata
         if: ${{ hashFiles('.sync-artifacts/bookindex-video-v2-sync.json') != '' }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: bookindex-video-v2-integrity
           path: .sync-artifacts/bookindex-video-v2-sync.json
