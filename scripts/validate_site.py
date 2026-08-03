@@ -29,9 +29,9 @@ def validate(root: Path) -> None:
     videos = catalog_v2["videos"]
     require(catalog_v1["schema"] == "zalizniak-video-catalog/1", "v1 schema changed")
     require(catalog_v2["schema"] == "zalizniak-video-catalog/2", "v2 schema changed")
-    require(len(videos) == 175, f"expected 175 videos, found {len(videos)}")
-    require(len({v["accession"] for v in videos}) == 175, "duplicate accession")
-    require(len({v["id"] for v in videos}) == 175, "duplicate YouTube id")
+    require(bool(videos), "catalog has no videos")
+    require(len({v["accession"] for v in videos}) == len(videos), "duplicate accession")
+    require(len({v["id"] for v in videos}) == len(videos), "duplicate YouTube id")
     require((root / "index.html").stat().st_size <= 250_000, "index exceeds 250 KB release budget")
 
     titles: set[str] = set()
@@ -74,7 +74,7 @@ def validate(root: Path) -> None:
         require(f'href="{expected_url}"' in alias, f"alias points elsewhere for {accession}")
 
     v1_by_id = {video["id"]: video for video in catalog_v1["videos"]}
-    require(len(v1_by_id) == 175, "v1 video count changed")
+    require(len(v1_by_id) == len(videos), "v1 video count differs from v2")
     for video in videos:
         require(v1_by_id[video["id"]]["path"] == video["legacy_path"], f"v1 path changed for {video['id']}")
 
@@ -88,7 +88,8 @@ def main() -> int:
     except (OSError, KeyError, ValueError, json.JSONDecodeError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print("OK: 175 canonical pages, aliases, thumbnails and SEO records validated")
+    catalog = json.loads((args.root / "data" / "catalog.v2.json").read_text(encoding="utf-8"))
+    print(f"OK: {len(catalog['videos'])} canonical pages, aliases, thumbnails and SEO records validated")
     return 0
 
 

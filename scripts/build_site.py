@@ -26,7 +26,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 sys.stderr.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PUBLIC_CATALOG = ROOT.parent / "BookIndex" / "data" / "video_catalog_public.json"
+DEFAULT_PUBLIC_CATALOG = ROOT.parent / "BookIndex" / "data" / "video_catalog_public.v2.json"
+LEGACY_PUBLIC_CATALOG = ROOT.parent / "BookIndex" / "data" / "video_catalog_public.json"
 FALLBACK_CATALOG = ROOT / "data" / "catalog.json"
 SITE_BASE = os.environ.get(
     "SITE_BASE", "https://gasyoun.github.io/ZalizniakVideo"
@@ -299,6 +300,11 @@ def fmt_duration(value: Any) -> str:
     return f"{hours}:{minutes:02d}:{secs:02d}" if hours else f"{minutes}:{secs:02d}"
 
 
+def display_date(record: dict) -> str:
+    value = record.get("date_recorded") or record.get("upload_date")
+    return visible(value) if value else "дата неизвестна"
+
+
 def option_values(records: Iterable[dict], key: str) -> list[str]:
     values = set()
     for record in records:
@@ -309,16 +315,42 @@ def option_values(records: Iterable[dict], key: str) -> list[str]:
 
 
 def contributor_names(value: Any) -> list[str]:
+    role_labels = {
+        "speaker": "выступающий",
+        "lecturer": "лектор",
+        "interviewer": "интервьюер",
+        "moderator": "модератор",
+        "participant": "участник",
+        "host": "ведущий",
+    }
     names = []
     for contributor in list_value(value):
         if isinstance(contributor, dict):
             name = first(contributor, "name", "label", "title")
             role = contributor.get("role")
             if name:
-                names.append(f"{name}, {role}" if role else str(name))
+                role_label = role_labels.get(str(role), str(role)) if role else None
+                names.append(f"{name}, {role_label}" if role_label else str(name))
         elif contributor:
             names.append(str(contributor))
     return names
+
+
+def evidence_data(record: dict) -> list[Any]:
+    """Normalize the public v2 evidence block while accepting v1 provenance."""
+    evidence = first(record, "evidence", "provenance", "sources")
+    if isinstance(evidence, dict):
+        evidence = first(evidence, "items", "records", "sources", default=[evidence])
+    normalized = []
+    preferred = ("url", "label", "accessed_at", "supports")
+    for item in list_value(evidence):
+        if not isinstance(item, dict):
+            normalized.append(item)
+            continue
+        keys = [key for key in preferred if key in item]
+        keys.extend(sorted(key for key in item if key not in preferred))
+        normalized.append({key: item[key] for key in keys})
+    return normalized
 
 
 def transcript_data(record: dict) -> dict:
@@ -381,6 +413,7 @@ def normalize_records(payload: Any) -> tuple[list[dict], dict]:
         series = first(raw, "purpose", "series", "collection")
         transcript = transcript_data(raw)
         url = first(raw, "watch_url", "url", "youtube_url", default=f"https://www.youtube.com/watch?v={rid}")
+        contributors_raw = first(raw, "contributors", "creators", "participants")
         prepared.append({
             "_source": raw,
             "accession": accession,
@@ -399,10 +432,12 @@ def normalize_records(payload: Any) -> tuple[list[dict], dict]:
             "series": series,
             "purpose": raw.get("purpose"),
             "last_verified_at": raw.get("last_verified_at"),
-            "contributors": contributor_names(first(raw, "contributors", "creators", "participants")),
+            "contributors": list_value(contributors_raw),
+            "contributor_labels": contributor_names(contributors_raw),
             "transcript": transcript,
             "bibliography": list_value(first(raw, "bibliography", "citations")),
-            "provenance": list_value(first(raw, "provenance", "sources")),
+            "provenance": evidence_data(raw),
+            "evidence": evidence_data(raw),
             "related_entities": list_value(raw.get("related_entities")),
             "description": first(raw, "description", "abstract"),
             "stage": raw.get("stage"),
@@ -474,9 +509,9 @@ def filter_select(name: str, label: str, values: list[str], all_label: str) -> s
 def render_index(records: list[dict]) -> str:
     cards = []
     for record in records:
-        date = record.get("date_recorded") or record.get("upload_date") or "дата неизвестна"
+        date = display_date(record)
         tags = " · ".join(visible(v) for v in ([record.get("type") or "тип не указан"] + record.get("topics", [])) if v)
-        contributors = ", ".join(visible(v) for v in record["contributors"])
+        contributors = ", ".join(visible(v) for v in record["contributor_labels"])
         search = " ".join(str(v or "") for v in (record["accession"], record["id"], record["title"], contributors, record.get("topic"), record.get("series")))
         cards.append(f'''<li class="card" data-card data-search="{esc(search)}" data-topic="{esc('|'.join(record.get('topics', [])))}" data-type="{esc(record.get('type') or '')}" data-series="{esc(record.get('series') or '')}" data-year="{esc(record.get('year') or '')}" data-transcript="{esc(record['transcript']['bucket'])}">
 <a class="card-link" href="{esc(record['path'])}">
@@ -524,6 +559,32 @@ def render_list(values: list[Any]) -> str:
     return f'<ul>{"".join(items)}</ul>' if items else '<p class="note">Сведения пока не представлены в публичном каталоге.</p>'
 
 
+def render_evidence(values: list[Any]) -> str:
+    """Render compact, link-safe public provenance rather than raw JSON blobs."""
+    items = []
+    for value in values:
+        if not isinstance(value, dict):
+            if value:
+                items.append(f"<li>{esc(visible(value))}</li>")
+            continue
+        label = first(value, "label", "title", "citation", "source", "provider", "kind", "name", default="Источник")
+        url = first(value, "url", "href", "source_url")
+        supports = first(value, "supports", "fields", "claims")
+        checked = first(value, "verified_at", "accessed_at", "retrieved_at", "date")
+        note = first(value, "note", "description")
+        lead = f'<a href="{esc(url)}" rel="noopener noreferrer">{esc(visible(label))}</a>' if url else esc(visible(label))
+        details = []
+        if supports:
+            details.append("подтверждает: " + ", ".join(visible(v) for v in list_value(supports)))
+        if checked:
+            details.append("проверено " + visible(checked))
+        if note:
+            details.append(visible(note))
+        suffix = f' <span class="note">({esc("; ".join(details))})</span>' if details else ""
+        items.append(f"<li>{lead}{suffix}</li>")
+    return f'<ul>{"".join(items)}</ul>' if items else '<p class="note">Публичные сведения о происхождении пока не представлены.</p>'
+
+
 def render_video(record: dict) -> str:
     accession, rid, title = record["accession"], record["id"], record["title"]
     canonical = f"{SITE_BASE}/v/{accession}/"
@@ -533,6 +594,7 @@ def render_video(record: dict) -> str:
     date = record.get("date_recorded") or record.get("upload_date")
     description = visible(record.get("description") or f"Архивная карточка видеозаписи «{title}»: проверяемые метаданные, происхождение и связанные материалы.")
     citation = f"{visible(title)}. Видеозапись. ZalizniakVideo, № {accession}. {canonical}"
+    contributor_value = ", ".join(record["contributor_labels"])
     facts = [
         ("Номер", f"№ {accession}"),
         ("Тип", record.get("type")),
@@ -541,7 +603,7 @@ def render_video(record: dict) -> str:
         ("Дата записи", record.get("date_recorded")),
         ("Дата публикации", record.get("upload_date")),
         ("Длительность", fmt_duration(record.get("duration"))),
-        ("Участники", ", ".join(record["contributors"])),
+        ("Участники", contributor_value),
         ("Последняя проверка", record.get("last_verified_at")),
     ]
     fact_html = "".join(f"<div><dt>{esc(label)}</dt><dd>{esc(visible(value))}</dd></div>" for label, value in facts if value)
@@ -572,7 +634,7 @@ def render_video(record: dict) -> str:
 <p class="breadcrumbs"><a href="../../">Все записи</a> / № {accession}</p>
 <div class="brand">ZalizniakVideo · Архивная карточка</div>
 <h1>{esc(visible(title))}</h1>
-<div class="archive-facts"><span class="accession">№ {accession}</span>{f'<span>{esc(visible(date))}</span>' if date else '<span>Дата не установлена</span>'}<span>{esc(fmt_duration(record['duration']))}</span></div>
+<div class="archive-facts"><span class="accession">№ {accession}</span><span>{esc(display_date(record))}</span><span>{esc(fmt_duration(record['duration']))}</span></div>
 </div></header>
 <main class="wrap" id="main"><div class="detail-grid"><article>
 <div class="player-shell">
@@ -584,7 +646,7 @@ def render_video(record: dict) -> str:
 <noscript><p><a class="button primary" href="{esc(youtube_url)}">Смотреть видео на YouTube</a></p></noscript>
 <div class="detail-actions"><a class="button primary" href="{esc(youtube_url)}" rel="noopener noreferrer">Открыть на YouTube</a><button class="button" type="button" data-copy="citation">Копировать описание</button><button class="button" type="button" data-copy="permalink">Копировать ссылку</button></div><p class="note" id="copy-status" role="status" aria-live="polite"></p>
 <section class="section" aria-labelledby="bibliography"><h2 id="bibliography">Библиография</h2>{render_list(record['bibliography'])}</section>
-<section class="section" aria-labelledby="provenance"><h2 id="provenance">Происхождение записи</h2>{render_list(record['provenance'])}</section>
+<section class="section" aria-labelledby="provenance"><h2 id="provenance">Происхождение записи</h2>{render_evidence(record['provenance'])}</section>
 <section class="section" aria-labelledby="transcript"><h2 id="transcript">Расшифровка</h2>{transcript_html}</section>
 <section class="section" aria-labelledby="entities"><h2 id="entities">Связанные сущности</h2>{f'<ul class="entity-list">{"".join(entities)}</ul>' if entities else '<p class="note">Сущности пока не представлены в публичном каталоге.</p>'}</section>
 </article><aside aria-label="Сведения о записи">
@@ -627,7 +689,7 @@ def v2_export(records: list[dict], source_meta: dict) -> dict:
         "source_schema": source_meta.get("schema") if isinstance(source_meta, dict) else None,
         "built_at": source_meta.get("generated_at") or source_meta.get("built_at") or os.environ.get("BUILD_TIMESTAMP", "source-undated"),
         "stats": {"records": len(records), "total_hours": round(sum(r["duration"] for r in records) / 3600, 2)},
-        "videos": [{k: r.get(k) for k in ("accession", "id", "title_source", "title", "url", "path", "legacy_path", "date_recorded", "upload_date", "year", "duration", "topics", "topic", "type", "purpose", "series", "contributors", "transcript", "bibliography", "provenance", "related_entities", "last_verified_at")} for r in records],
+        "videos": [{k: r.get(k) for k in ("accession", "id", "title_source", "title", "url", "path", "legacy_path", "date_recorded", "upload_date", "year", "duration", "topics", "topic", "type", "purpose", "series", "contributors", "transcript", "bibliography", "provenance", "evidence", "related_entities", "last_verified_at")} for r in records],
     }
 
 
@@ -707,7 +769,7 @@ def main() -> int:
     args = parse_args()
     configured_catalog = os.environ.get("BOOKINDEX_VIDEO_CATALOG")
     input_path = args.catalog or (Path(configured_catalog) if configured_catalog else None)
-    input_path = input_path or (DEFAULT_PUBLIC_CATALOG if DEFAULT_PUBLIC_CATALOG.is_file() else FALLBACK_CATALOG)
+    input_path = input_path or next((path for path in (DEFAULT_PUBLIC_CATALOG, LEGACY_PUBLIC_CATALOG, FALLBACK_CATALOG) if path.is_file()), FALLBACK_CATALOG)
     if not input_path.is_file():
         print(f"ERROR: missing catalog: {input_path}", file=sys.stderr)
         return 1

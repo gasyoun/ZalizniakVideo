@@ -11,3 +11,6 @@ Thumbs.db
 
 # Temporary local cache retained while remapping pre-v2 thumbnail accessions
 assets/thumbs-fallback-cache/
+
+# Transactional BookIndex sync output (uploaded by CI, never committed)
+.sync-artifacts/
