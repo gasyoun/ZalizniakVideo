@@ -1,0 +1,11 @@
+# А. А. Зализняк: архив видеозаписей
+
+> Research-edited archive of 176 public video recordings related to A. A. Zalizniak's work — one page per video (v/001/ … v/176/) with machine-readable catalogs.
+
+## Pages
+
+- [Video archive home](https://gasyoun.github.io/ZalizniakVideo/) — 176 video pages at `v/001/` … `v/176/`, e.g. [v/001](https://gasyoun.github.io/ZalizniakVideo/v/001/)
+- [Catalog (JSON, v1)](https://gasyoun.github.io/ZalizniakVideo/data/catalog.json)
+- [Catalog (JSON, v2)](https://gasyoun.github.io/ZalizniakVideo/data/catalog.v2.json)
+
+Source: https://github.com/gasyoun/ZalizniakVideo
