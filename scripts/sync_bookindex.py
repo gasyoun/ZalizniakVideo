@@ -52,6 +52,7 @@ EVIDENCE_SUPPORTS = {
     "transcript_status",
     "transcript_url",
     "public_note",
+    "duplicate_of",
 }
 CONTRIBUTOR_ROLES = {"speaker", "lecturer", "interviewer", "moderator", "participant", "host"}
 
