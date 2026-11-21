@@ -4045,8 +4045,44 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=uzzjnpPmEDQ",
+          "label": "YouTube video (запись 018)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=P0G948VmXtM",
+          "label": "YouTube video (запись 017)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=uzzjnpPmEDQ",
+          "label": "YouTube video (запись 018)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=P0G948VmXtM",
+          "label": "YouTube video (запись 017)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -4412,7 +4448,7 @@
           "t": 48
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-29"
     },
     {
       "accession": "019",
@@ -6398,8 +6434,44 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=IuGMs_6G5a0",
+          "label": "YouTube video (запись 034)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=nhDdTGqIROE",
+          "label": "YouTube video (запись 023)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=IuGMs_6G5a0",
+          "label": "YouTube video (запись 034)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=nhDdTGqIROE",
+          "label": "YouTube video (запись 023)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6531,7 +6603,7 @@
           "t": 1005
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-29"
     },
     {
       "accession": "035",
@@ -6795,8 +6867,44 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=PXDA9rQAsx0",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Xf2GBzzKb_0",
+          "label": "YouTube video (запись 005)",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=PXDA9rQAsx0",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Xf2GBzzKb_0",
+          "label": "YouTube video (запись 005)",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -6815,7 +6923,7 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-14"
     },
     {
       "accession": "041",
@@ -13046,9 +13154,11 @@
       "upload_date": null,
       "year": "",
       "duration": 8123,
-      "topics": [],
-      "topic": null,
-      "type": "совпадает ли с https://elementy.ru/nauchno-populyarnaya_biblioteka/433260/O_zhizni_slov ?",
+      "topics": [
+        "ЛЛШ"
+      ],
+      "topic": "ЛЛШ",
+      "type": "лекция",
       "purpose": null,
       "series": null,
       "contributors": [],
@@ -13060,8 +13170,44 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=Y8-LcHSreTE",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "type",
+            "topics"
+          ]
+        },
+        {
+          "url": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433260/O_zhizni_slov",
+          "label": "«Элементы»: О жизни слов",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "public_note"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=Y8-LcHSreTE",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "type",
+            "topics"
+          ]
+        },
+        {
+          "url": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433260/O_zhizni_slov",
+          "label": "«Элементы»: О жизни слов",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "public_note"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13072,7 +13218,7 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-14"
     },
     {
       "accession": "140",
@@ -13086,8 +13232,10 @@
       "upload_date": null,
       "year": "",
       "duration": 6003,
-      "topics": [],
-      "topic": null,
+      "topics": [
+        "ЛЛШ"
+      ],
+      "topic": "ЛЛШ",
       "type": null,
       "purpose": null,
       "series": null,
@@ -13100,8 +13248,26 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=cdowOJcJ9_c",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "topics"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=cdowOJcJ9_c",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "topics"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13128,7 +13294,7 @@
           "type": "subject_index"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-14"
     },
     {
       "accession": "141",
@@ -13320,7 +13486,7 @@
       "duration": 2879,
       "topics": [],
       "topic": null,
-      "type": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433894/Ili_i_uzhe",
+      "type": "лекция",
       "purpose": null,
       "series": null,
       "contributors": [],
@@ -13332,8 +13498,42 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=H9Ul5qcniS8",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "type"
+          ]
+        },
+        {
+          "url": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433894/Ili_i_uzhe",
+          "label": "«Элементы»: Или и уже",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "public_note"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=H9Ul5qcniS8",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "type"
+          ]
+        },
+        {
+          "url": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433894/Ili_i_uzhe",
+          "label": "«Элементы»: Или и уже",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "public_note"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13360,7 +13560,7 @@
           "type": "lexicon"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-14"
     },
     {
       "accession": "146",
@@ -13376,7 +13576,7 @@
       "duration": 2475,
       "topics": [],
       "topic": null,
-      "type": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433894/Ili_i_uzhe",
+      "type": "лекция",
       "purpose": null,
       "series": null,
       "contributors": [],
@@ -13388,8 +13588,42 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=r7ep0PXICkk",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "type"
+          ]
+        },
+        {
+          "url": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433894/Ili_i_uzhe",
+          "label": "«Элементы»: Или и уже",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "public_note"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=r7ep0PXICkk",
+          "label": "YouTube video",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "type"
+          ]
+        },
+        {
+          "url": "https://elementy.ru/nauchno-populyarnaya_biblioteka/433894/Ili_i_uzhe",
+          "label": "«Элементы»: Или и уже",
+          "accessed_at": "2026-08-14",
+          "supports": [
+            "public_note"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -13416,7 +13650,7 @@
           "type": "lexicon"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-14"
     },
     {
       "accession": "147",
@@ -14669,8 +14903,44 @@
         "verified": false
       },
       "bibliography": [],
-      "provenance": [],
-      "evidence": [],
+      "provenance": [
+        {
+          "url": "https://www.youtube.com/watch?v=1WEidNo2Ymw",
+          "label": "YouTube video (запись 173)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=G2Dj7e8HHeo",
+          "label": "YouTube video (запись 119)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://www.youtube.com/watch?v=1WEidNo2Ymw",
+          "label": "YouTube video (запись 173)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of",
+            "public_note"
+          ]
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=G2Dj7e8HHeo",
+          "label": "YouTube video (запись 119)",
+          "accessed_at": "2026-08-29",
+          "supports": [
+            "duplicate_of"
+          ]
+        }
+      ],
       "related_entities": [
         {
           "head": "А. А. Зализняк",
@@ -14681,7 +14951,7 @@
           "type": "names"
         }
       ],
-      "last_verified_at": null
+      "last_verified_at": "2026-08-29"
     },
     {
       "accession": "174",
